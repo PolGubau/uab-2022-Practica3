@@ -1,0 +1,131 @@
+ /* ANIMATIONS */
+
+ @keyframes gradient {
+   0% {
+     background-position: 0% 50%;
+   }
+
+   50% {
+     background-position: 100% 50%;
+   }
+
+   100% {
+     background-position: 0% 50%;
+   }
+ }
+
+
+
+ /* BODY STYLING */
+ body {
+   font-family: 'Poppins', Arial, Helvetica, sans-serif;
+   display: grid;
+   place-items: center;
+   height: 90vh;
+   background: var(--gradientBackground);
+   background-size: 400% 400%;
+   animation: gradient 7s ease infinite;
+ }
+
+
+ h1 {
+   font-size: 2em;
+   margin: 0;
+ }
+
+ button,
+ input {
+   outline: none;
+   border: 1px;
+ }
+
+ .container {
+   position: relative;
+   display: flex;
+   flex-direction: column;
+   width: 80%;
+   max-width: 600px;
+   background-color: var(--white);
+   border-radius: 20px;
+   padding: 35px 30px 50px 30px;
+   align-items: center;
+   justify-content: center;
+   align-content: center;
+   flex-wrap: wrap;
+ }
+
+ .formulari {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   align-content: center;
+   width: 80%;
+ }
+
+ .errorMessage {
+   position: absolute;
+   top: -40px;
+   border: 10px solid var(--white);
+   padding: 10px 15px;
+   background-color: var(--red);
+   border-radius: 20px;
+   width: fit-content;
+ }
+
+
+ .inputContainer {
+   display: flex;
+   flex-direction: column;
+   gap: 10px;
+   width: 100%;
+ }
+
+ .input {
+   border: 1px solid var(--grey);
+   border-radius: 10px;
+   padding: 10px;
+   width: 94%;
+   margin-bottom: 10px;
+
+ }
+
+ .footer {
+   margin-top: 20px;
+   display: flex;
+   flex-direction: column;
+ }
+
+ .botoEnviar {
+   font-size: 17px;
+   padding: 0;
+   background-color: var(--gren);
+   border-radius: 10px;
+   padding: 10px 15px;
+   cursor: pointer;
+   width: fit-content;
+   width: 80%;
+   border: 1px solid var(--grey);
+ }
+
+ .botoEnviar:hover {
+   background-color: var(--greenHover);
+   border: 1px solid var(--white);
+   color: var(--white);
+ }
+
+ .botoRegistre {
+   position: absolute;
+   bottom: -20px;
+   background-color: var(--lightGrey);
+   border: 5px solid var(--white);
+   text-decoration: none;
+   color: var(--black);
+   padding: 5px 15px;
+   border-radius: 10px;
+ }
+
+ .botoRegistre:hover {
+   background-color: var(--grey);
+   color: var(--white);
+ }

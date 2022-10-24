@@ -1,0 +1,13 @@
+:root {
+    --grey: #808080;
+    --lightGrey: #dadada;
+    --white: #ffffff;
+    --red: #ffaaaa;
+    --redHover: #b47575;
+    --gren: #aaffaa;
+    --greenHover: #73b173;
+    --blue: #aaaaff;
+    --black: #000;
+
+    --gradientBackground: linear-gradient(45deg, var(--blue) 0%, var(--gren) 100%);
+}

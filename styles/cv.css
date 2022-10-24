@@ -1,0 +1,242 @@
+  /* ANIMATIONS */
+
+  @keyframes gradient {
+      0% {
+          background-position: 0% 50%;
+      }
+
+      50% {
+          background-position: 100% 50%;
+      }
+
+      100% {
+          background-position: 0% 50%;
+      }
+  }
+
+  body {
+      font-family: 'Poppins', Arial, Helvetica, sans-serif;
+      display: grid;
+      place-items: center;
+      background: var(--gradientBackground);
+      background-size: 400% 400%;
+      animation: gradient 7s ease infinite;
+  }
+
+  .container {
+      background-color: var(--white);
+      max-width: 1200px;
+      padding: 0;
+      margin: 20px;
+      border-radius: 20px;
+
+  }
+
+  .sections {
+      padding: 30px;
+      display: grid;
+      margin-bottom: 20px;
+      gap: 30px;
+      grid-template-columns: 1fr 1.3fr;
+  }
+
+  @media screen and (max-width: 768px) {
+      .sections {
+          grid-template-columns: 1fr;
+      }
+  }
+
+
+
+  .header {
+      background-color: var(--grey);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      height: 120px;
+      width: 100%;
+      border-radius: 20px 20px 0 0;
+  }
+
+  .titulo {
+      font-weight: bold;
+      border-bottom: 2px var(--lightGrey) solid;
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      display: flex;
+      gap: 6px;
+  }
+
+  .section {
+      margin-bottom: 10px;
+      display: flex;
+      flex-direction: column;
+  }
+
+  .img {
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      border: 5px solid var(--grey);
+      margin: -120px 0px 25px 40px;
+  }
+
+  .col2 {
+      margin-top: 15px;
+      line-height: 1.25em;
+  }
+
+  .col2 ul {
+      margin-left: -31px;
+  }
+
+
+  .tituloprincipal {
+      margin-left: 200px;
+      font-weight: bold;
+      color: var(--white);
+  }
+
+  /*Puntitos de lista quitados*/
+
+  .col1 ul {
+      margin-left: -31px;
+  }
+
+  .item_lista {
+      display: flex;
+      gap: 7px;
+      margin-bottom: 4px;
+  }
+
+  .explicacion {
+      display: flex;
+      margin-bottom: 10px;
+
+  }
+
+  h4 {
+      font-size: 1.1em;
+      padding: 0;
+      margin: 0;
+      font-weight: bold;
+  }
+
+  /*Iconos*/
+  .fa-solid {
+      width: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--grey);
+  }
+
+
+
+  /*Barra de progressos*/
+  .progress-bar {
+      background-color: var(--lightGrey);
+      justify-content: center;
+      align-items: center;
+
+  }
+
+
+
+  .barraProgreso {
+      display: flex;
+      margin-bottom: 4px;
+      align-items: center;
+  }
+
+  .progress {
+      position: relative;
+      height: 15px;
+      width: 100%;
+      background-color: var(--lightGrey);
+      border-radius: 10px;
+      overflow: hidden;
+  }
+
+  .progress .percent {
+      z-index: 3;
+      position: absolute;
+      height: 15px;
+      /* background-color: var(--blue); */
+      border-radius: 10px;
+
+  }
+
+  .progress .percent .accent {
+      z-index: 2;
+      position: absolute;
+      height: 15px;
+      background-color: var(--grey);
+      border-radius: 10px;
+      animation: width 1s ease;
+      width: 100%;
+  }
+
+  @keyframes width {
+      0% {
+          width: 0%;
+      }
+
+      100% {
+          width: 100%;
+      }
+  }
+
+
+
+
+  .subtitulo {
+      color: var(--lightGrey);
+  }
+
+  .universidad {
+      color: var(--lightGrey);
+  }
+
+
+
+
+  .logout {
+      background-color: var(--red);
+      position: absolute;
+      top: 0;
+      text-decoration: none;
+      color: var(--white);
+      right: 0;
+      width: fit-content;
+      padding: 0 10px 0 30px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 0 0 0 50px;
+  }
+
+  .logout:hover {
+      background-color: var(--redHover);
+      color: var(--white);
+  }
+
+  @media only screen and (max-width: 600px) {
+
+      .row2 {
+          display: flex;
+          flex-direction: column;
+      }
+
+      .row2>* {
+          width: 100%;
+      }
+
+      .barraProgreso {
+          display: flex;
+          flex-direction: column;
+      }
+  }
