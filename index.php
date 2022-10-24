@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="styles/global.css">
     <link rel="stylesheet" href="styles/form.css">
 
-
 </head>
 
 <body>

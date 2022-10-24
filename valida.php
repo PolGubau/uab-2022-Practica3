@@ -28,7 +28,7 @@ $passwordCorrect = validaContrasenya($password, $user['password']);
 if ($passwordCorrect) {
     session_start();
     $_SESSION['user'] = $user;
-    header('Location: cv.php');
+    header('Location: home.php');
 } else {
     echo 'passwords are not correct';
     header('Location:./index.php?error=wrongPassword');

@@ -45,5 +45,5 @@ mail($to, $subject, $message, $headers);
 
 
 $_SESSION['user'] = $result;
-header("Location: cv.php");
+header("Location: home.php");
 exit;
