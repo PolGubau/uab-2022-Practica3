@@ -44,7 +44,7 @@
       }
       echo '</p>';
     } ?>
-    <form action="alta.php" method="post" class="formulari">
+    <form action="./controller/alta.php" method="post" class="formulari">
 
       <div class="inputContainer">
         <label for='nom'>Nom:</label>
@@ -72,7 +72,7 @@
 
     </form>
 
-    <a href="./index.php" class="botoRegistre">Tens un compte? Inicia sessió</a>
+    <a href="./login.php" class="botoRegistre">Tens un compte? Inicia sessió</a>
   </section>
 
 </html>

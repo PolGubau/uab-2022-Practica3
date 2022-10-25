@@ -1,7 +1,7 @@
 <?php
 //calling the database connection
-require_once './model/config.php';
-require_once './model/database.php';
+require_once '../model/config.php';
+require_once '../model/database.php';
 
 session_start();
 
@@ -12,7 +12,7 @@ $cognoms = (isset($_POST['cognoms'])) ? $_POST['cognoms'] : "";
 $email = (isset($_POST['email'])) ? $_POST['email'] : "";
 
 if (empty($userInput) || empty($password) || empty($nom) || empty($cognoms) || empty($email)) {
-    header("Location: registre.php?error=unfilled");
+    header("Location: ../registre.php?error=unfilled");
     exit;
 }
 
@@ -20,18 +20,18 @@ if (empty($userInput) || empty($password) || empty($nom) || empty($cognoms) || e
 // Si existeix un usuari amb aquest nom, no pot iniciar sessió
 $user = seleccionaUsuari($conn, $userInput);
 if ($user) {
-    header("Location: registre.php?error=alreadyExists");
+    header("Location: ../registre.php?error=alreadyExists");
     exit;
 }
 if (revisaSiEmailAgafat($email, $conn)) {
-    header("Location: registre.php?error=emailAlreadyExists");
+    header("Location: ../registre.php?error=emailAlreadyExists");
     exit;
 }
 
 // Creeem l'usuari
 $result = insertemUsuari($conn, $userInput, $password, $nom, $cognoms, $email);
 if (!$result) {
-    header("Location: registre.php?error=problemCreatingUser");
+    header("Location: ../registre.php?error=problemCreatingUser");
     exit;
 }
 
@@ -45,5 +45,5 @@ mail($to, $subject, $message, $headers);
 
 
 $_SESSION['user'] = $result;
-header("Location: home.php");
+header('Location: ../');
 exit;
