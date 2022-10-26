@@ -5,7 +5,7 @@ require_once '../model/database.php';
 
 session_start();
 
-$userInput = (isset($_POST['user'])) ? $_POST['user'] : "";
+$userInput = (isset($_POST['userName'])) ? $_POST['userName'] : "";
 $password = (isset($_POST['password'])) ? $_POST['password'] : "";
 $nom = (isset($_POST['nom'])) ? $_POST['nom'] : "";
 $cognoms = (isset($_POST['cognoms'])) ? $_POST['cognoms'] : "";

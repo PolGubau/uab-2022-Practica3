@@ -1,7 +1,12 @@
 <?php
-require_once './controller/checkAccount.php';
+require_once './model/config.php';
+require_once './model/database.php';
+require_once './controller/recorrerTaules.php';
 
 ?>
+
+
+
 
 
 <!DOCTYPE html>
@@ -16,6 +21,7 @@ require_once './controller/checkAccount.php';
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/global.css">
     <link rel="stylesheet" href="styles/home.css">
+    <title>Inici · CvCreator</title>
 
 </head>
 
@@ -29,12 +35,8 @@ require_once './controller/checkAccount.php';
         <h1>CV Creator 📚</h1>
         <h3>Pestanya d'inici</h3>
         <section class="allCVs">
-            <button class="cvContainer">Title</button>
-            <button class="cvContainer">Title</button>
-            <button class="cvContainer">Title</button>
-            <button class="cvContainer">Title</button>
-            <button class="cvContainer">Title</button>
-            <button class="cvContainer">Title</button>
+            <a class="cvContainer" href='cv.php?id=6'>Title</a>
+
         </section>
 
 

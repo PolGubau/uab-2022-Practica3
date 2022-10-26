@@ -1,8 +1,8 @@
 <?php
-require_once '../model/config.php';
+require '../model/config.php';
 require_once '../model/database.php';
 
-$userInput = (isset($_POST['user'])) ? $_POST['user'] : "";
+$userInput = (isset($_POST['userName'])) ? $_POST['userName'] : "";
 $password = (isset($_POST['password'])) ? $_POST['password'] : "";
 
 

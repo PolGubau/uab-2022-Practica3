@@ -8,79 +8,38 @@ function generateRandomNumber()
     return rand(25, 100);
 }
 
-function generateTelephone()
+
+
+
+function mapBasicProgressbar($array)
 {
-    $telephone = '';
-    for ($i = 0; $i < 9; $i++) {
-        $telephone .= rand(0, 9);
-    }
-    return  $telephone;
+    array_map(function ($item) {
+?>
+        <div class="barraProgreso">
+            <div class="col-6"><?php echo $item ?></div>
+            <div class="col-6">
+                <?php require './views/pieces/progressBar.php' ?>
+            </div>
+        </div>
+
+    <?php
+    }, $array);
 }
 
-function generateDate()
-{
-    $date = '';
-    $date .= rand(1, 28) . ' / ';
-    $date .= rand(1, 12) . ' / ';
-    $date .= rand(1950, 2018);
-    return $date;
-}
-
-function generateCountry()
-{
-    $countries = [
-        'Albania',
-        'Andorra',
-        'Armenia',
-        'Austria',
-        'Azerbaijan',
-        'Belarus',
-        'Belgium',
-        'Bosnia and Herzegovina',
-        'Bulgaria',
-        'Croatia',
-        'Cyprus',
-        'Czech Republic',
-        'Denmark',
-        'Estonia',
-        'Finland',
-        'France',
-        'Georgia',
-        'Germany',
-        'Greece',
-        'Hungary',
-        'Iceland',
-        'Ireland',
-        'Italy',
-        'Kazakhstan',
-        'Kosovo',
-        'Latvia',
-        'Liechtenstein',
-        'Lithuania',
-        'Luxembourg',
-        'Macedonia',
-        'Malta',
-        'Moldova',
-        'Monaco',
-        'Montenegro',
-        'Netherlands',
-        'Norway',
-        'Poland',
-        'Portugal',
-        'Romania',
-        'Russia',
-        'San Marino',
-        'Serbia',
-        'Slovakia',
-        'Slovenia',
-        'Spain',
-        'Sweden',
-        'Switzerland',
-        'Turkey',
-        'Ukraine',
-        'United Kingdom',
-        'Vatican City'
-    ];
-    $index = rand(0, count($countries) - 1);
-    return $countries[$index];
+function generateBarProgressSection(
+    string $title,
+    array $array
+) {
+    ?>
+    <div class="section">
+        <div class="titulo"><i class="fa-solid fa-angles-right"></i>
+            <h4><?php echo $title ?></h4>
+        </div>
+        <div>
+            <?php
+            mapBasicProgressbar($array);
+            ?>
+        </div>
+    </div>
+<?php
 }

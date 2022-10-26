@@ -60,7 +60,7 @@
       </div>
       <div class="inputContainer">
         <label for='user'>Nom d'usuari:</label>
-        <input type="text" class="input" name="user" maxlength="50">
+        <input type="text" class="input" name="userName" maxlength="50">
       </div>
       <div class="inputContainer">
         <label for='password'>Contrasenya:</label>

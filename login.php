@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,7 +41,7 @@
         } ?>
         <form action="./controller/valida.php" method="POST" class="formulari">
             <div class="inputContainer">
-                <label for="user">Nom d'usuari</label> <input type="text" class="input" name="user" maxlength="50">
+                <label for="userName">Nom d'usuari</label> <input type="text" class="input" name="userName" maxlength="50">
             </div>
             <div class="inputContainer">
 

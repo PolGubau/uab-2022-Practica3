@@ -1,8 +1,14 @@
 <?php
 require_once './utils/functions.php';
 
-require_once './controller/checkAccount.php';
+require_once './controller/redirect5secs.php';
 
+
+
+
+$arrayHabilidades = ['Disciplinado', 'Liderazgo', 'Visionario', 'Habilidad numérica', 'Relaciones públicas'];
+$arrayIdiomas = ['Inglés', 'Francés', 'Alemán', 'Italiano'];
+$arrayInformatica = ['Microsoft Excel', 'Microsoft Word', 'Software DelBol', 'Contalux', 'Cegit'];
 ?>
 
 
@@ -26,187 +32,41 @@ require_once './controller/checkAccount.php';
 
 <body>
   <a href="./controller/logout.php" class="logout">Tancar Sessió</a>
+  <a href="./" class="return">Anar a l'inici</a>
   <div class="container">
     <div class="header">
-      <h1 class="tituloprincipal"><?php echo ($nom . ' ' . $cognoms) ?></h1>
+      <h1 class="tituloprincipal"><?php echo ($nomComplet) ?></h1>
     </div>
     <section class="sections">
       <div class="col1">
         <div class="section">
-          <img class="img" src="https://api.multiavatar.com/<?php echo ($nom . ' ' . $cognoms) ?>.png">
+          <img class="img" src="https://api.multiavatar.com/<?php echo ($nomComplet) ?>.png">
 
           <div class="titulo"><i class="fa-solid fa-angles-right"></i>
             <h4>Datos personales</h4>
           </div>
           <div>
             <ul>
-              <li class="item_lista"><i class="fa-solid fa-user"></i><?php echo ($nom . ' ' . $cognoms) ?></li>
+              <li class="item_lista"><i class="fa-solid fa-user"></i><?php echo ($nomComplet) ?></li>
               <li class="item_lista"><i class="fa-solid fa-house"></i>Calle 24 5532, City Bell, La Plata</li>
-              <li class="item_lista"><i class="fa-solid fa-phone"></i><?php echo '(+34) 6' . generateTelephone() ?></li>
+              <li class="item_lista"><i class="fa-solid fa-phone"></i><?php echo 'TLF' ?></li>
               <li class="item_lista"><i class="fa-solid fa-at"></i><?php echo ($email) ?></li>
-              <li class="item_lista"><i class="fa-solid fa-calendar"></i><?php echo generateDate() ?></li>
-              <li class="item_lista"><i class="fa-solid fa-flag"></i><?php echo generateCountry() ?></li>
-              <li class="item_lista"><i class="fa-solid fa-mobile"></i><?php echo generateTelephone() ?></li>
+              <li class="item_lista"><i class="fa-solid fa-calendar"></i><?php echo 'date' ?></li>
+              <li class="item_lista"><i class="fa-solid fa-flag"></i><?php echo 'country' ?></li>
+              <li class="item_lista"><i class="fa-solid fa-mobile"></i><?php echo 'tlf' ?></li>
               <li class="item_lista"><i class="fa-solid fa-heart"></i>Soltero</li>
               <li class="item_lista"><i class="fa-solid fa-car"></i>Clase C</li>
             </ul>
           </div>
         </div>
 
-        <!-- Habilidades -->
-        <div class="section">
-          <div class="titulo"><i class="fa-solid fa-angles-right"></i>
-            <h4>Habilidades</h4>
-          </div>
-          <div>
-            <div class="barraProgreso">
-              <div class="col-6">Disciplinado</div>
-              <div class="col-6">
-                <?php require './views/pieces/progressBar.php' ?>
-              </div>
-            </div>
 
+        <?php
+        generateBarProgressSection('habilidades', $arrayHabilidades);
+        generateBarProgressSection('Idiomas', $arrayIdiomas);
+        generateBarProgressSection('Informática', $arrayInformatica);
+        ?>
 
-            <div class="barraProgreso ">
-              <div class="col-6">Liderazgo</div>
-              <div class="col-6">
-                <?php require './views/pieces/progressBar.php' ?>
-
-              </div>
-            </div>
-
-
-            <div class="barraProgreso ">
-              <div class="col-6">Visionario</div>
-              <div class="col-6">
-                <?php require './views/pieces/progressBar.php' ?>
-
-              </div>
-            </div>
-
-
-            <div class="barraProgreso ">
-              <div class="col-6">Habilidad numérica</div>
-              <div class="col-6">
-                <?php require './views/pieces/progressBar.php' ?>
-
-              </div>
-            </div>
-
-
-            <div class="barraProgreso ">
-              <div class="col-6">Relaciones públicas</div>
-              <div class="col-6">
-                <?php require './views/pieces/progressBar.php' ?>
-
-              </div>
-            </div>
-
-
-          </div>
-        </div>
-
-
-        <!-- idiomas -->
-        <div class="section">
-          <div class="titulo"><i class="fa-solid fa-angles-right"></i>
-            <h4>Idiomas</h4>
-          </div>
-          <div>
-            <div class="barraProgreso ">
-              <div class="col-6">Español</div>
-              <div class="col-6">
-                <?php require './views/pieces/progressBar.php' ?>
-
-              </div>
-            </div>
-
-
-            <div class="barraProgreso ">
-              <div class="col-6">Inglés</div>
-              <div class="col-6">
-                <?php require './views/pieces/progressBar.php' ?>
-
-              </div>
-            </div>
-
-
-            <div class="barraProgreso ">
-              <div class="col-6">Francés</div>
-              <div class="col-6">
-                <?php require './views/pieces/progressBar.php' ?>
-
-              </div>
-            </div>
-
-
-            <div class="barraProgreso ">
-              <div class="col-6">Portugués</div>
-              <div class="col-6">
-                <?php require './views/pieces/progressBar.php' ?>
-
-              </div>
-            </div>
-
-
-          </div>
-        </div>
-
-        <!-- Informática -->
-        <div class="section">
-          <div class="titulo"><i class="fa-solid fa-angles-right"></i>
-            <h4>Informática</h4>
-          </div>
-          <div>
-            <div class="barraProgreso ">
-              <div class="col-6">Microsoft Excel</div>
-              <div class="col-6">
-                <?php require './views/pieces/progressBar.php' ?>
-
-              </div>
-            </div>
-
-
-            <div class="barraProgreso ">
-              <div class="col-6">Microsoft Word</div>
-              <div class="col-6">
-                <?php require './views/pieces/progressBar.php' ?>
-
-              </div>
-            </div>
-
-
-            <div class="barraProgreso ">
-              <div class="col-6">Software DelBol</div>
-              <div class="col-6">
-                <?php require './views/pieces/progressBar.php' ?>
-
-              </div>
-            </div>
-
-
-            <div class="barraProgreso ">
-              <div class="col-6">Contalux</div>
-              <div class="col-6">
-                <?php require './views/pieces/progressBar.php' ?>
-
-              </div>
-            </div>
-
-
-            <div class="barraProgreso ">
-              <div class="col-6">Cegit</div>
-              <div class="col-6">
-                <?php require './views/pieces/progressBar.php' ?>
-
-              </div>
-            </div>
-
-
-
-
-          </div>
-        </div>
 
         <!-- Competencias -->
         <div class="section">

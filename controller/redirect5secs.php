@@ -26,9 +26,10 @@ if (!isset($_SESSION['user'])) {
 
     $user = $_SESSION['user'];
     $nom = $user['nom'];
-    $cognom = $user['cognom'];
+    $cognoms = $user['cognoms'];
     $email = $user['email'];
     $id = $user['id'];
+    $nomComplet = $nom . " " . $cognoms;
 }
 
 
