@@ -4,7 +4,7 @@ require './model/database.php';
 
 
 require_once './utils/functions.php';
-require_once './controller/recorrerTaules.php';
+require_once './controller/CRUD/recorrerTaules.php';
 
 
 
@@ -12,104 +12,139 @@ $editMode = false;
 if (isset($_GET['edit'])) {
   $editMode = true;
 }
+if ($editMode) {
+  $urlWhenEdit = './profile.php';
+} else {
+  $urlWhenEdit = './profile.php?edit';
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles/global.css">
+  <?php require_once './views/pieces/head.php'; ?>
   <link rel="stylesheet" href="styles/home.css">
   <link rel="stylesheet" href="styles/cv.css">
+  <link rel="stylesheet" href="styles/editProfile.css">
+  <link rel="stylesheet" href="styles/Layout.css">
+  <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon" />
+
+  <title>Your profile</title>
 
 </head>
 
 <body>
+  <?php
+  $inputsToBeShown = [
+    ['Nom', $arrayDadesPeronals['nom'], 'text', 'nom'],
+    ['Cognoms', $arrayDadesPeronals['cognoms'], 'text', 'cognoms'],
+    ['Email', $arrayDadesPeronals['email'], 'text', 'email'],
+    ['Data Naixement', $arrayDadesPeronals['dataNaixement'], 'date', 'dataNaixement'],
+    ['Sexe', $arrayDadesPeronals['sexe'], 'select', 'sexe', ['Home', 'Done', 'Altres', 'Si']],
+    ['Estat Civil', $arrayDadesPeronals['estatCivil'], 'text', 'estatCivil'],
+    ['Carnet Conduir', $arrayDadesPeronals['carnetConduir'], 'text', 'carnetConduir'],
+    ['Codi Postal', $arrayDadesPeronals['codiPostal'], 'text', 'codiPostal'],
+    ['Poblacio', $arrayDadesPeronals['poblacio'], 'text', 'poblacio'],
+    ['Provincia', $arrayDadesPeronals['provincia'], 'text', 'provincia'],
+    ['Pais', $arrayDadesPeronals['pais'], 'text', 'pais'],
+    ['Carrer', $arrayDadesPeronals['carrer'], 'text', 'carrer'],
+  ];
+
+  ?>
   <section class="container">
     <div class="settings">
-      <a class="logout" href="./controller/logout.php">Logout</a>
-      <a class="editButton" href="./profile.php?edit">Profile</a>
+      <a class="buttonRed" href="./controller/logout.php">Logout</a>
+
+      <a class="buttonOptions" href=<?php echo $urlWhenEdit ?>>
+        <?php echo $editMode ? 'Save' : 'Edit' ?>
+      </a>
     </div>
     <h1>CV Creator 📚</h1>
     <h3>El teu perfil
     </h3>
     <section class="totesDades">
-      <p>Nom: </p>
-      <input type="text" class="input" name="nom" maxlength="50" value=<?php echo $nom ?> <?php echo !$editMode ? 'readonly' : '' ?> />
-
-      <p>Els teus idiomes</p>
-      <div class="idiomes">
+      <section class="sectionDadesPersonals">
+        <!-- DADES PERSONALS -->
         <?php
-        if (!$user['idiomes']) {
-          echo '<p>No tens idiomes</p>';
-        } else {
-          foreach ($user['idiomes'] as $idioma) {
-            echo '<div>';
-            echo "<p>" . $idioma['idiomaNom'] . "</p>";
-
-            if ($editMode) {
+        foreach ($inputsToBeShown as $input) {
+          $inputName = $input[0];
+          $inputValue = $input[1];
+          $inputType = $input[2];
+          $inputId = $input[3];
+          $optionsIfSelect = $input[4] ?? null;
         ?>
+          <div class="dadesPersonalsContainer">
+            <p class="heading"><?php echo $inputName ?></p>
+            <div class="dadesPersonals">
+              <?php if ($editMode) { ?>
 
-              <form method="POST" action="./controller/modificarTaules.php">
-                <input type="hidden" name="id" value=<?php echo $idioma['idiomaId'] ?> />
-                <input type="range" min="0" max="100" value=<?php echo $idioma['idiomaNivell'] ?> class="slider" id="myRange" name="nivell">
-      </div>
-      <input type="submit" value="Modificar" name="modificarIdioma" class="button">
-      </form>
+                <form method="POST" action="./controller/CRUD/modificarTaules.php" class="inputContainer">
 
-    <?php
-            } else {
-    ?>
-      <div class="progress">
-        <div class="percent" style="width:<?php echo  strval($idioma['idiomaNivell']) ?>%">
+                  <?php
 
-          <div class="accent"></div>
+                  if ($inputType == 'select') { ?>
+                    <select name=<?php echo $inputId ?>>
+                      <?php foreach ($optionsIfSelect as $option) { ?>
+                        <option value=<?php echo $option ?>><?php echo $option ?></option>
+                      <?php } ?>
+                    </select>
+                  <?php
+                  } else if ($inputType == 'date') { ?>
+                    <input required type="date" name=<?php echo $inputId ?> value=<?php echo $inputValue ?> min="1920-01-01" max="2018-12-31">
+                  <?php } else { ?>
+
+                    <input required type=<?php echo $inputType ?> name=<?php echo $inputId ?> value="<?php echo $inputValue ?> " class="inputValor" />
+                  <?php
+                  }
+                  ?>
+                  <input type="submit" value="Modifiar" name="modificaUnaDadaPersonal" class="editButton">
+
+                </form>
+
+                <?php
+              } else {
+                if ($inputValue) {
+                ?>
+                  <p class="inputValor"><?php echo $inputValue ?></p>
+                <?php
+                } else {
+                ?>
+                  <form method="POST" action="./controller/CRUD/modificarTaules.php" class="inputContainer">
+                    <input type=<?php echo $inputType ?> name=<?php echo $inputId ?> value="<?php echo $inputValue ?> " class="inputValor" />
+                    <input type="submit" value="Modifiar" name="modificaUnaDadaPersonal" class="editButton">
+                  </form>
+              <?php
+                }
+              } ?>
+            </div>
+          </div>
+        <?php } ?>
+
+        <!-- Change password zone, the new one will be n input, when send this password, send a random string to its email and ask for it, if its validated, password will change -->
+        <!-- <div class="dadesPersonalsContainer">
+          <p>Canviar Contrasenya</p>
+          <form method="POST" action="./controller/CRUD/modificarTaules.php" class="inputContainer">
+            <input type="password" name="password" class="inputValor" required />
+            <input type="submit" value="Modifiar" name="modificaContrasenya" class="editButton">
+        </div> -->
+      </section>
+      <?php
 
 
-        </div>
-        <div class=" background"></div>
-      </div>
+      include_once './views/Profile/SeccióIdiomes.php';
+      // include_once './views/Profile/seccioInformatica/seccioInformatica.php';
 
 
-    <?php
-            }
-            if ($editMode) {
-
-    ?>
-
-
-      <a href="./controller/eliminarDeTaula.php?taula=idiomes&idTaula=<?php echo 'idiomaId' ?>&id=<?php echo $idioma['idiomaId'] ?>">Eliminar</a>
-      </div>
-  <?php
-            }
-          }
-        }
-        if ($editMode) {
-  ?>
-  <form action="./controller/afegirATaules.php" method="POST">
-    <select name="idioma" id="idioma">
-      <option value="Castellà">Castellà</option>
-      <option value="Català">Català</option>
-      <option value="Anglès">Anglès</option>
-
-
-      <input type="range" class="input" name="nivell" min="0" max="100" value="50" />
-      <button class="botoEnviar" type="submit" name="AfegirIdioma">Afegir</button>
-  </form>
-<?php
-        } ?>
-
-</div>
+      ?>
 
     </section>
 
+    <?php
 
+
+
+    ?>
 </body>
 
 </html>

@@ -283,3 +283,8 @@ WHERE usuaris.id = 1;
     dataCreacio TIMESTAMP
 
 
+
+
+create procedure getAllUser (IN idUsuari integer) SELECT * FROM usuaris INNER JOIN telefons ON usuaris.id = telefons.userID INNER JOIN emails ON usuaris.id = emails.userID INNER JOIN habilitats ON usuaris.id = habilitats.userID INNER JOIN idiomes ON usuaris.id = idiomes.userID INNER JOIN informatica ON usuaris.id = informatica.userID INNER JOIN experiencies ON usuaris.id = experiencies.userID INNER JOIN estudis ON usuaris.id = estudis.userID INNER JOIN cursos ON usuaris.id = cursos.userID INNER JOIN projectes ON usuaris.id = projectes.userID INNER JOIN interessos ON usuaris.id = interessos.userID WHERE usuaris.id = 1;
+
+call update_price(001); 

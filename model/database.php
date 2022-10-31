@@ -46,9 +46,9 @@ function revisaSiEmailAgafat($email, $conn)
 }
 
 
-function selectTableByUser($table, $userId, $conn)
+function selectTableByUser(string $table, string $userId,  $conn, $tableName = 'userId')
 {
-    $query = "SELECT * FROM $table WHERE userId = $userId";
+    $query = "SELECT * FROM $table WHERE $tableName = $userId";
     $result = $conn->query($query);
     return $result->fetchAll();
 }
@@ -66,6 +66,12 @@ function eliminarDeTaula($conn, $taula, $idTaula, $id)
     return $result;
 }
 
+function updateTable($taula,  $camp, $valor, $id, $conn, $keyField = 'id')
+{
+    $query = "UPDATE $taula SET $camp = '$valor' WHERE $keyField = $id";
+    $result = $conn->query($query);
+    return $result;
+}
 
 
 function modificaIdioma($conn, $idIdioma, $nivell)

@@ -32,10 +32,10 @@ require_once './controller/CRUD/recorrerTaules.php';
             <a href="./profile.php">Profile</a>
         </div>
         <h1>CV Creator 📚</h1>
-        <h3>Pestanya d'inici</h3>
+        <h3>Crear un Curriculum</h3>
         <?php if (count($unfilledFieldsDadesPersonals) > 0) {
         ?>
-            <a href="./profile.php" class="headerWarningMessage"> <i class="fa-solid fa-circle-exclamation"></i>
+            <a href="./profile.php" class="headerErrorMessage"> <i class="fa-solid fa-circle-exclamation"></i>
                 <p>Abans de crear un currículum, necesites omplir les dades necessaries.</p>
             </a>
         <?php

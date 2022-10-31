@@ -1,0 +1,84 @@
+.dadesPersonalsContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+
+.sectionDadesPersonals {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.inputValor {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 5px 10px;
+    font-size: 14px;
+    color: var(--grey);
+}
+
+.inputContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: flex-end;
+    align-items: stretch;
+}
+
+.editButton {
+    background-color: var(--yellow);
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 10px;
+    padding: 5px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.progressContainer {
+    background-color: var(--lightGrey);
+    display: flex;
+    margin: 0;
+    flex-direction: row;
+    justify-content: flex-start;
+    text-align: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+.progressRange {
+    width: 100%;
+    max-width: 100px;
+
+}
+
+.progress {
+    width: 100%;
+    max-width: 100px;
+}
+
+.deleteRowProgress {
+    display: flex;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background-color: var(--red);
+}
+
+.deleteRowProgress:hover {
+    /* background-color: var(--red-hover); */
+    /* deleting cursor */
+    cursor: pointer;
+}

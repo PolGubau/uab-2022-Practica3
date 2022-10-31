@@ -1,0 +1,36 @@
+.headerErrorMessage {
+    background-color: var(--red);
+    color: black;
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 90%;
+    margin-bottom: 10px;
+}
+
+.headerErrorMessage:hover {
+    cursor: pointer;
+}
+
+.headerWarningMessage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--yellow);
+    color: black;
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 90%;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+    flex-direction: row;
+    border: solid 1px var(--yellow);
+    align-content: center;
+}
+
+.headerWarningMessage:hover {
+    cursor: pointer;
+    background-color: var(--yellowLight);
+}

@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,13 +8,17 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles/global.css">
-    <link rel="stylesheet" href="styles/form.css">
 
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/Layout.css">
+    <link rel="stylesheet" href="styles/buttons.css">
+    <link rel="stylesheet" href="styles/form.css">
+    <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon" />
+<title>Inici de sessió</title>
 </head>
 
 <body>
-    <section class="container">
+    <section class="container containerSmall">
         <h1>CV Creator 📚</h1>
         <h3>Inicia sessió</h3>
         <?php
