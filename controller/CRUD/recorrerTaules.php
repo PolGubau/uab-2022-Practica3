@@ -18,12 +18,14 @@ $nomComplet = $nom . " " . $cognoms;
 
 
 
-$user['dadesPersonals'] = selectTableByUser('usuaris', $id, $conn, 'id');
-$user['idiomes'] = selectTableByUser('idiomes', $id, $conn);
-$user['telefons'] = selectTableByUser('telefons', $id, $conn);
-$user['estudis'] = selectTableByUser('estudis', $id, $conn);
-$user['informatica'] = selectTableByUser('informatica', $id, $conn);
-$user['projectes'] = selectTableByUser('projectes', $id, $conn);
+$user['dadesPersonals'] = selectTableByUser('usuaris', $id, $conn, 'id') ?? []; //done
+$user['habilitats'] = selectTableByUser('habilitats', $id, $conn) ?? []; //done
+$user['informatica'] = selectTableByUser('informatica', $id, $conn) ?? []; //done
+$user['idiomes'] = selectTableByUser('idiomes', $id, $conn) ?? []; //done
+$user['experiencies'] = selectTableByUser('experiencies', $id, $conn) ?? [];
+$user['telefons'] = selectTableByUser('telefons', $id, $conn) ?? [];
+$user['estudis'] = selectTableByUser('estudis', $id, $conn) ?? [];
+$user['projectes'] = selectTableByUser('projectes', $id, $conn) ?? [];
 
 
 $_SESSION['user'] = $user;

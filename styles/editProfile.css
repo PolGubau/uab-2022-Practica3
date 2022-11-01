@@ -6,37 +6,41 @@
     align-items: center;
     margin-bottom: 10px;
     align-content: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
 }
 
 
 .sectionDadesPersonals {
+    column-gap: 20px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
-.inputValor {
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    padding: 5px 10px;
-    font-size: 14px;
-    color: var(--grey);
-}
 
 .inputContainer {
     width: 100%;
     display: flex;
     flex-direction: row;
-    gap: 5px;
     flex-wrap: nowrap;
     align-content: center;
     justify-content: flex-end;
     align-items: stretch;
 }
 
+.inputContainer select,
+.inputContainer input,
+.inputContainer textarea {
+    border-radius: 10px 0 0 10px;
+    border: 1px solid #ccc;
+    border-radius: none;
+    border-radius: 10px 0 0 10px;
+    padding: 5px 10px;
+    font-size: 14px;
+    color: var(--grey);
+}
+
 .editButton {
     background-color: var(--yellow);
-    color: rgb(0, 0, 0);
     border: none;
     border-radius: 10px;
     padding: 5px 10px;
@@ -45,7 +49,12 @@
     transition: all 0.3s ease;
 }
 
+.editButtonInput {
+    border-radius: 0 10px 10px 0;
+}
+
 .progressContainer {
+    position: relative;
     background-color: var(--lightGrey);
     display: flex;
     margin: 0;
@@ -58,10 +67,10 @@
     align-content: center;
 }
 
-.progressRange {
-    width: 100%;
-    max-width: 100px;
-
+.deleteButtonFloating {
+    position: absolute;
+    right: 0;
+    bottom: 0;
 }
 
 .progress {
@@ -78,7 +87,213 @@
 }
 
 .deleteRowProgress:hover {
-    /* background-color: var(--red-hover); */
-    /* deleting cursor */
+
     cursor: pointer;
+}
+
+
+.section {
+    border: 1px solid var(--grey);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+.upperPart {
+    width: 100%;
+}
+
+.sectionHeading {
+    height: 50px;
+    border: 1px solid var(--grey);
+    display: flex;
+    margin: 0;
+    width: 100%;
+    background-color: var(--grey);
+    color: white;
+    border-radius: 18px 18px 0 0;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+
+.progressContainer {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    align-content: center;
+    background-color: var(--white);
+}
+
+.results {
+    width: 100%
+}
+
+.progressContainer p {
+    margin-left: 20px;
+}
+
+.progressRange {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.buttonModify {
+    background-color: var(--yellow);
+    border: none;
+    border-radius: 10px;
+    padding: 5px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    width: fit-content;
+    transition: all 0.3s ease;
+}
+
+.buttonDelete {
+    background-color: var(--red);
+    border-radius: 10px 0 0 10px;
+}
+
+.fa-trash-can,
+.fa-floppy-disk,
+.fa-plus {
+    color: var(--black);
+}
+
+
+.addNew {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    align-content: center;
+    background-color: var(--lightGrey);
+    border: 1px solid var(--grey);
+    border-radius: 0 0 18px 18px;
+}
+
+.valor {
+    margin-left: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+}
+
+.botoEnviar {
+    background-color: var(--green);
+    border: none;
+    border-radius: 0 0 20px 0;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.bigAddButton {
+    width: 100%;
+    background-color: var(--green);
+    border: none;
+    border-radius: 0 0 20px 20px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.fa-plus {
+    margin-right: 10px;
+    transform: scale(0.5);
+}
+
+.altresSeccions {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+    align-content: center;
+    gap: 10px;
+    max-width: 900px;
+    flex-wrap: wrap;
+
+}
+
+
+
+
+
+.formLarge {
+    padding-top: 10px;
+    gap: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    align-content: center;
+}
+
+.formLargeList {
+    display: flex;
+
+    border: none;
+    background-color: var(--white);
+    border-radius: 0;
+}
+
+.formLargeNew {
+    border: 1px solid var(--grey);
+    background-color: var(--lightGrey);
+    border-radius: 18px;
+}
+
+.formLarge input,
+.formLarge textarea {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 5px 10px;
+    font-size: 14px;
+    width: 90%;
+    color: var(--grey);
+}
+
+.formLarge textarea {
+    max-height: 200px;
+    min-height: 50px;
+    resize: vertical;
+}
+
+.formMultipleLines {
+    display: flex;
+    width: 90%;
+    gap: 5%;
+    padding: 5px 10px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.formButtons {
+    display: flex;
+    width: 90%;
+    gap: 5%;
+    padding: 5px 10px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.formButtons button {
+    border-radius: 10px;
 }

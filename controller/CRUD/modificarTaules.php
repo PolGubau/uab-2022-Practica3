@@ -107,14 +107,79 @@ if (isset($_POST['modificaUnaDadaPersonal'])) {
 }
 
 
-
-
 if (isset($_POST['modificarIdioma'])) {
     $idIdioma = $_POST['id'];
     $nivell = $_POST['nivell'];
     modificaIdioma($conn, $idIdioma, $nivell);
-    header('Location: ../../profile.php');
+    header('Location: ../../profile.php?edit');
 }
+
+if (isset($_POST['modificaHabilitats'])) {
+    $id = $_POST['id'];
+    $nivell = $_POST['nivell'];
+    modificaHabilitats($conn, $id, $nivell);
+    header('Location: ../../profile.php?edit');
+}
+if (isset($_POST['modificaInformatica'])) {
+    $id = $_POST['id'];
+    $nivell = $_POST['nivell'];
+    modificaInformatica($conn, $id, $nivell);
+    header('Location: ../../profile.php?edit');
+}
+
+
+
+
+
+
+if (isset($_POST['modificarExperiencia'])) {
+    $userId = $_POST['idUsuari'];
+    $taula = $_POST['taula'];
+    $idTaula = $_POST['idTaula'];
+    $experienciaId = $_POST['experienciaId'];
+    $experienciaDataFi = $_POST['experienciaDataFi'];
+    $experienciaDataInici = $_POST['experienciaDataInici'];
+    $experienciaDescripcio = $_POST['experienciaDescripcio'];
+    $experienciaEmpresa = $_POST['experienciaEmpresa'];
+    $experienciaTitol = $_POST['experienciaTitol'];
+    $experienciaUbicacio = $_POST['experienciaUbicacio'];
+    modificarExperiencies($conn, $experienciaId, $experienciaDataInici, $experienciaDataFi, $experienciaTitol, $experienciaEmpresa, $experienciaUbicacio, $experienciaDescripcio);
+
+    header('Location: ../../profile.php?edit');
+    exit();
+}
+if (isset($_POST['modificarEstudis'])) {
+    $userId = $_POST['idUsuari'];
+    $taula = $_POST['taula'];
+    $idTaula = $_POST['idTaula'];
+    $Id = $_POST['estudiId'];
+    $DataFi = $_POST['estudiDataFi'];
+    $DataInici = $_POST['estudiDataInici'];
+    $Descripcio = $_POST['estudiDescripcio'];
+    $Empresa = $_POST['estudiEmpresa'];
+    $Titol = $_POST['estudiTitol'];
+    $Ubicacio = $_POST['estudiUbicacio'];
+    modificarEstudis($conn, $Id, $DataInici, $DataFi, $Titol, $Empresa, $Ubicacio, $Descripcio);
+
+    header('Location: ../../profile.php?edit');
+    exit();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 if (isset($_POST['modificaContrasenya'])) {
     $newPassword = $_POST['password'];
@@ -129,3 +194,7 @@ if (isset($_POST['modificaContrasenya'])) {
     $_SESSION['newPassword'] = $newPassword;
     header('Location: ../../views/validarContrasenya.php');
 }
+
+
+
+echo 'no hi ha cap post';

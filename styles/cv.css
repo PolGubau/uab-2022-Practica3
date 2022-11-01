@@ -187,26 +187,7 @@
       color: var(--black);
   }
 
-  .logout {
-      background-color: var(--red);
-      position: absolute;
-      top: 0;
-      text-decoration: none;
-      color: var(--white);
-      right: 0;
-      width: fit-content;
-      padding: 0 15px 0 25px;
-      height: 50px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 0 0 0 30px;
-  }
 
-  .logout:hover {
-      background-color: var(--redHover);
-      color: var(--white);
-  }
 
   @media only screen and (max-width: 600px) {
 

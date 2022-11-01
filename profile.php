@@ -1,9 +1,6 @@
 <?php
 require './model/config.php';
 require './model/database.php';
-
-
-require_once './utils/functions.php';
 require_once './controller/CRUD/recorrerTaules.php';
 
 
@@ -42,8 +39,8 @@ if ($editMode) {
     ['Email', $arrayDadesPeronals['email'], 'text', 'email'],
     ['Data Naixement', $arrayDadesPeronals['dataNaixement'], 'date', 'dataNaixement'],
     ['Sexe', $arrayDadesPeronals['sexe'], 'select', 'sexe', ['Home', 'Done', 'Altres', 'Si']],
-    ['Estat Civil', $arrayDadesPeronals['estatCivil'], 'text', 'estatCivil'],
-    ['Carnet Conduir', $arrayDadesPeronals['carnetConduir'], 'text', 'carnetConduir'],
+    ['Estat Civil', $arrayDadesPeronals['estatCivil'], 'select', 'estatCivil', ['Solter', 'Vidu', 'Casat', 'Separat', 'Complicat...']],
+    ['Carnet Conduir', $arrayDadesPeronals['carnetConduir'], 'select', 'carnetConduir', ['No', 'B', 'C', 'A1', 'A2', 'C', 'C1', 'D1', 'D', 'E']],
     ['Codi Postal', $arrayDadesPeronals['codiPostal'], 'text', 'codiPostal'],
     ['Poblacio', $arrayDadesPeronals['poblacio'], 'text', 'poblacio'],
     ['Provincia', $arrayDadesPeronals['provincia'], 'text', 'provincia'],
@@ -53,16 +50,18 @@ if ($editMode) {
 
   ?>
   <section class="container">
-    <div class="settings">
-      <a class="buttonRed" href="./controller/logout.php">Logout</a>
+    <div class="settingsLeft">
+      <a href="./">Go Back</a>
 
-      <a class="buttonOptions" href=<?php echo $urlWhenEdit ?>>
-        <?php echo $editMode ? 'Save' : 'Edit' ?>
-      </a>
+      <a class="logout" href="./controller/logout.php">Logout</a>
+    </div>
+    <div class="settingsRight">
+      <a href=<?php echo $urlWhenEdit  ?>><?php echo $editMode ? 'Save' : 'Edit'  ?></a>
     </div>
     <h1>CV Creator 📚</h1>
-    <h3>El teu perfil
-    </h3>
+    <h3>El teu perfil</h3>
+
+
     <section class="totesDades">
       <section class="sectionDadesPersonals">
         <!-- DADES PERSONALS -->
@@ -84,9 +83,15 @@ if ($editMode) {
                   <?php
 
                   if ($inputType == 'select') { ?>
+
+
                     <select name=<?php echo $inputId ?>>
                       <?php foreach ($optionsIfSelect as $option) { ?>
-                        <option value=<?php echo $option ?>><?php echo $option ?></option>
+                        <option value=<?php echo $option ?> <?php echo $option == $inputValue ? 'selected' : '' ?>>
+
+                          <?php echo $option ?>
+
+                        </option>
                       <?php } ?>
                     </select>
                   <?php
@@ -94,11 +99,12 @@ if ($editMode) {
                     <input required type="date" name=<?php echo $inputId ?> value=<?php echo $inputValue ?> min="1920-01-01" max="2018-12-31">
                   <?php } else { ?>
 
-                    <input required type=<?php echo $inputType ?> name=<?php echo $inputId ?> value="<?php echo $inputValue ?> " class="inputValor" />
+                    <input required type=<?php echo $inputType ?> name=<?php echo $inputId ?> value="<?php echo $inputValue ?> " />
                   <?php
                   }
                   ?>
-                  <input type="submit" value="Modifiar" name="modificaUnaDadaPersonal" class="editButton">
+                  <button type="submit" value="Modifiar" name="modificaUnaDadaPersonal" class="editButton editButtonInput"> <i class="fa-solid fa-floppy-disk"></i>
+                  </button>
 
                 </form>
 
@@ -110,10 +116,7 @@ if ($editMode) {
                 <?php
                 } else {
                 ?>
-                  <form method="POST" action="./controller/CRUD/modificarTaules.php" class="inputContainer">
-                    <input type=<?php echo $inputType ?> name=<?php echo $inputId ?> value="<?php echo $inputValue ?> " class="inputValor" />
-                    <input type="submit" value="Modifiar" name="modificaUnaDadaPersonal" class="editButton">
-                  </form>
+                  <button class="editButton"> <a href=<?php echo $urlWhenEdit ?>>Completa el perfil</a></button>
               <?php
                 }
               } ?>
@@ -129,15 +132,19 @@ if ($editMode) {
             <input type="submit" value="Modifiar" name="modificaContrasenya" class="editButton">
         </div> -->
       </section>
-      <?php
+      <section class="altresSeccions">
+        <?php
 
 
-      include_once './views/Profile/SeccióIdiomes.php';
-      // include_once './views/Profile/seccioInformatica/seccioInformatica.php';
+        include_once './views/Profile/seccionesClaveValor/seccioHabilitats.php';
+        include_once './views/Profile/seccionesClaveValor/SeccióIdiomes.php';
+        include_once './views/Profile/seccionesClaveValor/seccioInformatica.php';
+        include_once './views/Profile/seccionsComplexes/seccioExperiencia.php';
+        include_once './views/Profile/seccionsComplexes/seccioEstudis.php';
 
 
-      ?>
-
+        ?>
+      </section>
     </section>
 
     <?php

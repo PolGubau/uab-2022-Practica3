@@ -7,12 +7,12 @@
     --redHover: #b47575;
     --yellow: #ffd7aa;
     --yellowLight: #fff2d7;
-    --gren: #aaffaa;
+    --green: #aaffaa;
     --greenHover: #73b173;
     --blue: #aaaaff;
     --black: #000;
 
-    --gradientBackground: linear-gradient(45deg, var(--blue) 0%, var(--gren) 100%);
+    --gradientBackground: linear-gradient(45deg, var(--blue) 0%, var(--green) 100%);
 }
 
 a {
@@ -23,4 +23,8 @@ a {
 h1 {
     font-size: 2em;
     margin: 0;
+}
+
+* {
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
 }

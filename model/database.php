@@ -55,16 +55,42 @@ function selectTableByUser(string $table, string $userId,  $conn, $tableName = '
 
 function addLanguage($conn, $userId, $idiomaNom, $idiomaNivell)
 {
-    $query = "INSERT INTO idiomes (userId, idiomaNom, idiomaNivell) VALUES ($userId, '$idiomaNom', '$idiomaNivell')";
+    $query = "INSERT INTO idiomes (userId, idiomaNom, idiomaNivell) VALUES ($userId, '$idiomaNom', '$idiomaNivell') RETURNING *";
     $result = $conn->query($query);
     return $result;
 }
+function addInformatica($conn, $userId, $valor, $nivell)
+{
+    $query = "INSERT INTO informatica (userId, informaticaNom, informaticaNivell) VALUES ($userId, '$valor', '$nivell')";
+    $result = $conn->query($query);
+    return $result;
+}
+function addHabilitats($conn, $userId, $valor, $nivell)
+{
+    $query = "INSERT INTO habilitats (userId, habilitatValor, habilitatNivell) VALUES ($userId, '$valor', '$nivell')";
+    $result = $conn->query($query);
+    return $result;
+}
+function addExperiencies($conn, $experienciaDataInici, $experienciaDataFi, $experienciaTitol, $experienciaEmpresa, $experienciaUbicacio, $experienciaDescripcio, $userId)
+{
+    $query = "INSERT INTO experiencies ( experienciaDataInici, experienciaDataFi, experienciaTitol, experienciaEmpresa, experienciaUbicacio, experienciaDescripcio, userId) VALUES ('$experienciaDataInici', '$experienciaDataFi', '$experienciaTitol','$experienciaEmpresa', '$experienciaUbicacio', '$experienciaDescripcio', $userId)";
+    $result = $conn->query($query);
+    return $result;
+}
+
+
+
+
+
 function eliminarDeTaula($conn, $taula, $idTaula, $id)
 {
     $query = "DELETE FROM $taula WHERE $idTaula = $id";
     $result = $conn->query($query);
     return $result;
 }
+
+
+
 
 function updateTable($taula,  $camp, $valor, $id, $conn, $keyField = 'id')
 {
@@ -79,5 +105,35 @@ function modificaIdioma($conn, $idIdioma, $nivell)
     $query = "UPDATE idiomes SET idiomaNivell = '$nivell' WHERE idiomaId = $idIdioma";
 
     $result = $conn->query($query);
+    return $result;
+}
+
+function modificaHabilitats($conn, $id, $nivell)
+{
+    $query = "UPDATE habilitats SET habilitatNivell = '$nivell' WHERE habilitatId = $id";
+    $result = $conn->query($query);
+    return $result;
+}
+function modificaInformatica($conn, $id, $nivell)
+{
+    $query = "UPDATE informatica SET informaticaNivell = '$nivell' WHERE informaticaId = $id";
+    $result = $conn->query($query);
+    return $result;
+}
+
+
+
+function modificarExperiencies($conn, $Id, $DataInici, $DataFi, $Titol, $Empresa, $Ubicacio, $Descripcio)
+{
+    $query = "UPDATE `experiencies` SET `experienciaDataInici`='$DataInici',`experienciaDataFi`='$DataFi',`experienciaTitol`='$Titol',`experienciaEmpresa`='$Empresa',`experienciaUbicacio`='$Ubicacio',`experienciaDescripcio`='$Descripcio' WHERE experienciaId = $Id";
+    $result = $conn->query($query);
+    var_dump($result);
+    return $result;
+}
+function modificarEstudis($conn, $Id, $DataInici, $DataFi, $Titol, $Empresa, $Ubicacio, $Descripcio)
+{
+    $query = "UPDATE `experiencies` SET `experienciaDataInici`='$DataInici',`experienciaDataFi`='$DataFi',`experienciaTitol`='$Titol',`experienciaEmpresa`='$Empresa',`experienciaUbicacio`='$Ubicacio',`experienciaDescripcio`='$Descripcio' WHERE experienciaId = $Id";
+    $result = $conn->query($query);
+    var_dump($result);
     return $result;
 }

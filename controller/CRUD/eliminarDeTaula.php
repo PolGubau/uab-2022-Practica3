@@ -17,10 +17,11 @@ if (isset($_POST['id']) && $_POST['id'] && isset($_POST['taula']) && $_POST['tau
     eliminarDeTaula($conn, $taula, $idTaula, $id);
 
     //once we have deleted the data from the database, we will return the new data to the ajax request, 
-    
 
 
-    echo json_encode(array('success' => 1, 'user' => $user));
+
+    // echo json_encode(array('success' => 1, 'user' => $user));
+    header('Location: ../../profile.php?edit');
 } else {
-    echo json_encode(array('success' => 0));
+    // echo json_encode(array('success' => 0));
 }

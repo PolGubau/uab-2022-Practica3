@@ -27,10 +27,14 @@ require_once './controller/CRUD/recorrerTaules.php';
 <body>
 
     <section class="container">
-        <a class="logout" href="./controller/logout.php">Logout</a>
-        <div class="settings">
+        <div class="settingsLeft">
+            <a class="logout" href="./controller/logout.php">Logout</a>
+        </div>
+        <div class="settingsRight"> 
             <a href="./profile.php">Profile</a>
         </div>
+        
+        <!--  -->
         <h1>CV Creator 📚</h1>
         <h3>Pestanya d'inici</h3>
         <?php if (count($unfilledFieldsDadesPersonals) > 0) {
