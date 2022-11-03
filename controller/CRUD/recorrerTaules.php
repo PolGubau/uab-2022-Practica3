@@ -1,8 +1,10 @@
 <?php
 
+//check if a session is already started
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
-
-session_start();
 if (!isset($_SESSION['user'])) {
     header('Location: login.php');
     exit();
@@ -23,9 +25,7 @@ $user['habilitats'] = selectTableByUser('habilitats', $id, $conn) ?? []; //done
 $user['informatica'] = selectTableByUser('informatica', $id, $conn) ?? []; //done
 $user['idiomes'] = selectTableByUser('idiomes', $id, $conn) ?? []; //done
 $user['experiencies'] = selectTableByUser('experiencies', $id, $conn) ?? [];
-$user['telefons'] = selectTableByUser('telefons', $id, $conn) ?? [];
 $user['estudis'] = selectTableByUser('estudis', $id, $conn) ?? [];
-$user['projectes'] = selectTableByUser('projectes', $id, $conn) ?? [];
 
 
 $_SESSION['user'] = $user;

@@ -1,17 +1,38 @@
 <?php
-require_once './utils/functions.php';
+session_start();
 
 require_once './controller/redirect5secs.php';
+require_once './model/config.php';
+require_once './model/database.php';
+require_once './controller/CRUD/recorrerTaules.php';
+require_once './model/crudCvs/Read.php';
+
+// we've reached a cv page, if we not have a cvId, we redirect to the home page
+if (!isset($_REQUEST['id'])) {
+  header("Location: ./");
+  die;
+}
+// Now we need to get the cvId from the url
+
+$cvId = $_REQUEST['id'];
+$arrayCvs = getCv($conn, $cvId);
+$bigCv = completeCv($conn, $cvId);
+$dadesPersonals = $user['dadesPersonals'];
+
+$direccio = $user['carrer'] . ', ' . $user['poblacio'] . ', ' . $user['provincia'] . ', ' . $user['codiPostal'];
+$pais = $user['pais'];
+$telefon = $user['telefon'];
+$email = $user['email'];
+$birthday = $user['dataNaixement'];
+$estatCivil = $user['estatCivil'];
+$carnet = $user['carnetConduir'];
+// print_r($dadesPersonals);
+// echo "<pre>";
+// print_r($bigCv);
+// echo "</pre>";
 
 
-
-
-$arrayHabilidades = ['Disciplinado', 'Liderazgo', 'Visionario', 'Habilidad numérica', 'Relaciones públicas'];
-$arrayIdiomas = ['Inglés', 'Francés', 'Alemán', 'Italiano'];
-$arrayInformatica = ['Microsoft Excel', 'Microsoft Word', 'Software DelBol', 'Contalux', 'Cegit'];
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,41 +71,22 @@ $arrayInformatica = ['Microsoft Excel', 'Microsoft Word', 'Software DelBol', 'Co
           <div>
             <ul>
               <li class="item_lista"><i class="fa-solid fa-user"></i><?php echo ($nomComplet) ?></li>
-              <li class="item_lista"><i class="fa-solid fa-house"></i>Calle 24 5532, City Bell, La Plata</li>
-              <li class="item_lista"><i class="fa-solid fa-phone"></i><?php echo 'TLF' ?></li>
+              <li class="item_lista"><i class="fa-solid fa-house"></i></li>
+              <?php echo $direccio; ?>
+
+              <li class="item_lista"><i class="fa-solid fa-phone"></i><?php echo $telefon ?></li>
               <li class="item_lista"><i class="fa-solid fa-at"></i><?php echo ($email) ?></li>
-              <li class="item_lista"><i class="fa-solid fa-calendar"></i><?php echo 'date' ?></li>
-              <li class="item_lista"><i class="fa-solid fa-flag"></i><?php echo 'country' ?></li>
-              <li class="item_lista"><i class="fa-solid fa-mobile"></i><?php echo 'tlf' ?></li>
-              <li class="item_lista"><i class="fa-solid fa-heart"></i>Soltero</li>
-              <li class="item_lista"><i class="fa-solid fa-car"></i>Clase C</li>
+              <li class="item_lista"><i class="fa-solid fa-calendar"></i><?php echo $birthday ?></li>
+              <li class="item_lista"><i class="fa-solid fa-flag"></i><?php echo $pais ?></li>
+
+              <li class="item_lista"><i class="fa-solid fa-heart"></i> <?php echo $estatCivil ?></li>
+              <li class="item_lista"><i class="fa-solid fa-car"></i><?php echo $carnet ?></li>
             </ul>
           </div>
         </div>
-
-
-        <?php
-        generateBarProgressSection('habilidades', $arrayHabilidades);
-        generateBarProgressSection('Idiomas', $arrayIdiomas);
-        generateBarProgressSection('Informática', $arrayInformatica);
-        ?>
-
-
-        <!-- Competencias -->
         <div class="section">
           <div class="titulo"><i class="fa-solid fa-angles-right"></i>
-            <h4>Competencias
-            </h4>
-          </div>
-          <div>
-            <div>
-
-              <ul>
-                <li class="item_lista"><i class="fa-solid fa-caret-right"></i>Comunicación</li>
-                <li class="item_lista"><i class="fa-solid fa-caret-right"></i>Trabajo en equipo</li>
-
-              </ul>
-            </div>
+            <h4>Habilitats</h4>
           </div>
         </div>
       </div>

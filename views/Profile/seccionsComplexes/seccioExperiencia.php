@@ -77,7 +77,7 @@ $array = $user['experiencies'];
 
         ?>
     </div>
-    <form class="formLarge formLargeNew" method="POST" id='new' action='controller\CRUD\afegirATaules.php' autocomplete="off">
+    <form class="formLarge formLargeNew" method="POST" id='new' action='controller/CRUD/afegirATaules.php' autocomplete="off">
         <input type="hidden" name="taula" value="experiencies">
         <input type="hidden" name="idTaula" value="experienciaId">
         <input type="hidden" name="idUsuari" value=<?php echo $user['id'] ?>>

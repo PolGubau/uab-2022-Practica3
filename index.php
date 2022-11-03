@@ -1,8 +1,12 @@
 <?php
+session_start();
 require_once './model/config.php';
 require_once './model/database.php';
 require_once './controller/CRUD/recorrerTaules.php';
+require_once './model/crudCvs/Read.php';
 
+
+$arrayCvs = getAllCvs($conn, $_SESSION['user']['id']);
 ?>
 
 
@@ -22,6 +26,14 @@ require_once './controller/CRUD/recorrerTaules.php';
 
     <title>Inici · CvCreator</title>
 
+    <script>
+        function deleteCv(id) {
+            if (confirm("Estas segur que vols eliminar aquest CV? Aquesta acció no es pot desfer")) {
+                window.location.href = "controller/gestionarCv.php?accio=D&cvId=" + id;
+            }
+        }
+    </script>
+
 </head>
 
 <body>
@@ -30,10 +42,10 @@ require_once './controller/CRUD/recorrerTaules.php';
         <div class="settingsLeft">
             <a class="logout" href="./controller/logout.php">Logout</a>
         </div>
-        <div class="settingsRight"> 
+        <div class="settingsRight">
             <a href="./profile.php">Profile</a>
         </div>
-        
+
         <!--  -->
         <h1>CV Creator 📚</h1>
         <h3>Pestanya d'inici</h3>
@@ -48,11 +60,35 @@ require_once './controller/CRUD/recorrerTaules.php';
 
 
         <section class="allCVs">
-            <a class="cvContainer" href="./crearCv.php">
+            <a class="cvBox" href="./crearCv.php">
                 <i class="fa-solid fa-plus"></i>
                 <p>Crear un nou currículum</p>
 
             </a>
+            <?php
+            if (count($arrayCvs) > 0) {
+                foreach ($arrayCvs as $cv) {
+            ?>
+                    <article class="cvContainer">
+                        <a class="cvBox" href="./cv.php?id=<?php echo $cv['cvId'] ?>">
+                            <h3><?php echo $cv['cvNom'] ?></h3>
+                            <p><?php echo $cv['cvPerfil'] ?></p>
+
+                        </a>
+
+                        <button class="eliminarCv" onclick="deleteCv(<?php echo $cv['cvId'] ?>)"><i class="fa-solid fa-trash iconaEliminarCv"></i></button>
+
+                    </article>
+                <?php
+
+                }
+            } else {
+                ?>
+                <p class="noCvs">No tens cap currículum creat.</p>
+            <?php
+            }
+            ?>
+
 
         </section>
     </section>

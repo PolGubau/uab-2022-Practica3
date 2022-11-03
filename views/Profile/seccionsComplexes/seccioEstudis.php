@@ -87,7 +87,7 @@ $array = $user['estudis'];
         <input type="hidden" name="taula" value="estudis">
         <input type="hidden" name="idTaula" value="estudiId">
         <input type="hidden" name="idUsuari" value=<?php echo $user['id'] ?>>
-        <input type='hidden' name='function' value='afegirestudi'>
+        <input type='hidden' name='function' value='afegirEstudi'>
 
 
         <input type="text" name="estudiTitol" placeholder="Titol a l'empresa: " required>
@@ -107,6 +107,6 @@ $array = $user['estudis'];
         </div>
 
 
-        <button class="bigAddButton" type="submit" name="afegirestudi"><i class="fa-solid fa-plus "></i></button>
+        <button class="bigAddButton" type="submit" name="afegirEstudi"><i class="fa-solid fa-plus "></i></button>
     </form>
 </section>

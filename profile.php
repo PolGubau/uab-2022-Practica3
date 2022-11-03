@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 require './model/config.php';
 require './model/database.php';
 require_once './controller/CRUD/recorrerTaules.php';
@@ -24,6 +26,7 @@ if ($editMode) {
   <link rel="stylesheet" href="styles/home.css">
   <link rel="stylesheet" href="styles/cv.css">
   <link rel="stylesheet" href="styles/editProfile.css">
+  <link rel="stylesheet" href="styles/buttons.css">
   <link rel="stylesheet" href="styles/Layout.css">
   <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon" />
 

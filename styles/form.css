@@ -96,23 +96,6 @@
    flex-direction: column;
  }
 
- .botoEnviar {
-   font-size: 17px;
-   padding: 0;
-   background-color: var(--gren);
-   border-radius: 10px;
-   padding: 10px 15px;
-   cursor: pointer;
-   width: fit-content;
-   width: 80%;
-   border: 1px solid var(--grey);
- }
-
- .botoEnviar:hover {
-   background-color: var(--greenHover);
-   border: 1px solid var(--white);
-   color: var(--white);
- }
 
  .botoRegistre {
    position: absolute;

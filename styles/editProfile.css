@@ -192,13 +192,7 @@
     border: none;
 }
 
-.botoEnviar {
-    background-color: var(--green);
-    border: none;
-    border-radius: 0 0 20px 0;
-    padding: 5px 10px;
-    cursor: pointer;
-}
+
 
 .bigAddButton {
     width: 100%;

@@ -1,9 +1,10 @@
 <?php
+session_start();
+
 require_once '../../model/database.php';
 require_once '../../model/config.php';
 require_once './recorrerTaules.php';
 
-session_start();
 if (!isset($_SESSION['user'])) {
     header('Location: login.php');
     exit();
@@ -73,25 +74,36 @@ if (isset($_POST['function'])) {
             $experienciaEmpresa = $_POST['experienciaEmpresa'];
             $experienciaTitol = $_POST['experienciaTitol'];
             $experienciaUbicacio = $_POST['experienciaUbicacio'];
-
-
-
-
             $query = addExperiencies($conn, $experienciaDataInici, $experienciaDataFi, $experienciaTitol, $experienciaEmpresa, $experienciaUbicacio, $experienciaDescripcio, $userId);
+            
             if ($query == true) {
                 require_once './recorrerTaules.php';
                 $_SESSION['user'] = $user;
-                // echo json_encode(array('success' => 1, 'user' => $user));
-
                 header('Location: ../../profile.php?edit');
             } else {
-                // echo json_encode(array('success' => 0));
+                header('Location: ../../profile.php?edit');
+            }
+            break;
+        case 'afegirEstudi':
+            $userId = $_POST['idUsuari'];
+            $DataFi = $_POST['estudiDataFi'];
+            $DataInici = $_POST['estudiDataInici'];
+            $Descripcio = $_POST['estudiDescripcio'];
+            $Empresa = $_POST['estudiEmpresa'];
+            $Titol = $_POST['estudiTitol'];
+            $Ubicacio = $_POST['estudiUbicacio'];
+            $query = addEstudis($conn, $DataInici, $DataFi, $Titol, $Empresa, $Ubicacio, $Descripcio, $userId);
+            if ($query == true) {
+                require_once './recorrerTaules.php';
+                $_SESSION['user'] = $user;
+                header('Location: ../../profile.php?edit');
+            } else {
                 header('Location: ../../profile.php?edit');
             }
             break;
 
         default:
-            # code...
+            echo 'default';
             break;
     }
 }

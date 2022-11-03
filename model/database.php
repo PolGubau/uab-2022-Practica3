@@ -71,9 +71,16 @@ function addHabilitats($conn, $userId, $valor, $nivell)
     $result = $conn->query($query);
     return $result;
 }
-function addExperiencies($conn, $experienciaDataInici, $experienciaDataFi, $experienciaTitol, $experienciaEmpresa, $experienciaUbicacio, $experienciaDescripcio, $userId)
+function addExperiencies($conn, $DataInici, $DataFi, $Titol, $Empresa, $Ubicacio, $Descripcio, int $userId)
 {
-    $query = "INSERT INTO experiencies ( experienciaDataInici, experienciaDataFi, experienciaTitol, experienciaEmpresa, experienciaUbicacio, experienciaDescripcio, userId) VALUES ('$experienciaDataInici', '$experienciaDataFi', '$experienciaTitol','$experienciaEmpresa', '$experienciaUbicacio', '$experienciaDescripcio', $userId)";
+    $query = "INSERT INTO experiencies (experienciaDataInici, experienciaDataFi, experienciaTitol, experienciaEmpresa, experienciaUbicacio, experienciaDescripcio, userId) VALUES ('$DataInici', '$DataFi', '$Titol', '$Empresa', '$Ubicacio', '$Descripcio', $userId)";
+    $result = $conn->query($query);
+    return $result;
+}
+
+function addEstudis($conn, $DataInici, $DataFi, $Titol, $Empresa, $Ubicacio, $Descripcio, int $userId)
+{
+    $query = "INSERT INTO estudis (estudiDataInici, estudiDataFi, estudiTitol, estudiEmpresa, estudiUbicacio, estudiDescripcio, userId) VALUES ('$DataInici', '$DataFi', '$Titol', '$Empresa', '$Ubicacio', '$Descripcio', $userId)";
     $result = $conn->query($query);
     return $result;
 }
