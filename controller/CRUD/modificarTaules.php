@@ -24,6 +24,7 @@ if (isset($_POST['modificaUnaDadaPersonal'])) {
     $provincia = isset($_POST['provincia']) ? $_POST['provincia'] : $lastUser['provincia'];
     $pais = isset($_POST['pais']) ? $_POST['pais'] : $lastUser['pais'];
     $carrer = isset($_POST['carrer']) ? $_POST['carrer'] : $lastUser['carrer'];
+    $telefon = isset($_POST['telefon']) ? $_POST['telefon'] : $lastUser['telefon'];
 
     echo $nom . ' ' . $cognoms . ' ' . $email . ' ' . $dataNaixement . ' ' . $sexe . ' ' . $estatCivil . ' ' . $carnetConduir . ' ' . $codiPostal . ' ' . $poblacio . ' ' . $provincia . ' ' . $pais . ' ' . $carrer . '<br>';
 
@@ -87,6 +88,13 @@ if (isset($_POST['modificaUnaDadaPersonal'])) {
         echo "carrer";
         if (strlen($carrer) > 0) {
             updateTable('usuaris', 'carrer', $carrer, $userId, $conn);
+        }
+    }
+    if ($telefon != $lastUser['telefon']) {
+        echo "telefon";
+        if (strlen($telefon) > 0) {
+            $telParsed = strval(str_replace(' ', '', $telefon));
+            updateTable('usuaris', 'telefon', $telParsed, $userId, $conn);
         }
     }
 

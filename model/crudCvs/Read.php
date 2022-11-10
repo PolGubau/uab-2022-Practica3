@@ -1,7 +1,10 @@
 
 
 <?php
-
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+require_once 'Classes/CV.php';
 
 function getAllCvs($conn, $userId)
 {
@@ -153,12 +156,26 @@ function completeCv($conn, $cvId)
     $userId = $cv['userId'];
     $cvId = $cv['cvId'];
 
-    $cv['informatica'] = getCvInformatica($conn, $cvId, $userId);
-    $cv['estudis'] = getCvEstudis($conn, $cvId, $userId);
-    $cv['experiencies'] = getCvExperiencies($conn, $cvId, $userId);
-    $cv['habilitats'] = getCvHabilitats($conn, $cvId, $userId);
-    $cv['idiomes'] = getCvIdiomes($conn, $cvId, $userId);
+    $metadata = [
+        'cvId' => $cvId,
+        'userId' => $userId,
+        'nom' => $cv['cvNom'],
+        'perfil' => $cv['cvPerfil'],
+        'data' => $cv['cvDataCreacio'],
+
+    ];
 
 
-    return $cv;
+    $arrayDadesPersonals = $_SESSION['user']['dadesPersonals'][0];
+
+
+    $informatica = getCvInformatica($conn, $cvId, $userId);
+    $estudis = getCvEstudis($conn, $cvId, $userId);
+    $experiencia = getCvExperiencies($conn, $cvId, $userId);
+    $habilitats = getCvHabilitats($conn, $cvId, $userId);
+    $idiomes = getCvIdiomes($conn, $cvId, $userId);
+
+    $BigCV = new CV($cvId, $metadata, $arrayDadesPersonals, $experiencia, $estudis, $habilitats, $idiomes, $informatica);
+
+    return $BigCV;
 }

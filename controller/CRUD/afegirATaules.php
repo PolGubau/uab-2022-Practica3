@@ -13,25 +13,21 @@ if (isset($_POST['function'])) {
     switch ($_POST['function']) {
 
 
-        case 'afegirIdioma':
+
+
+        case 'afegirIdiomes':
             $userId = $_POST['userId'];
-            $idioma = $_POST['idioma'];
+            $valor = $_POST['valor'];
             $nivell = $_POST['nivell'];
-            // function addLanguage($conn, $userId, $idiomaNom, $idiomaNivell)
-            $query = addLanguage($conn, $userId, $idioma, $nivell);
+            $query = addLanguage($conn, $userId, $valor, $nivell);
             if ($query == true) {
                 require_once './recorrerTaules.php';
                 $_SESSION['user'] = $user;
-                echo json_encode(array('success' => 1, 'user' => $user));
-
-                header('Location: profile.php?edit');
+                header('Location: ../../profile.php?edit');
             } else {
-                echo json_encode(array('success' => 0));
-                header('Location: profile.php?edit');
+                header('Location: ../../profile.php?edit');
             }
             break;
-
-
         case 'afegirInformatica':
             $userId = $_POST['idUsuari'];
             $valor = $_POST['valor'];
@@ -40,11 +36,8 @@ if (isset($_POST['function'])) {
             if ($query == true) {
                 require_once './recorrerTaules.php';
                 $_SESSION['user'] = $user;
-                // echo json_encode(array('success' => 1, 'user' => $user));
-
                 header('Location: ../../profile.php?edit');
             } else {
-                // echo json_encode(array('success' => 0));
                 header('Location: ../../profile.php?edit');
             }
             break;
@@ -75,7 +68,7 @@ if (isset($_POST['function'])) {
             $experienciaTitol = $_POST['experienciaTitol'];
             $experienciaUbicacio = $_POST['experienciaUbicacio'];
             $query = addExperiencies($conn, $experienciaDataInici, $experienciaDataFi, $experienciaTitol, $experienciaEmpresa, $experienciaUbicacio, $experienciaDescripcio, $userId);
-            
+
             if ($query == true) {
                 require_once './recorrerTaules.php';
                 $_SESSION['user'] = $user;

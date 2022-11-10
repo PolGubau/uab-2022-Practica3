@@ -70,8 +70,12 @@ $array = $user['idiomes'];
 
     ?>
   </div>
-  <form class="addNew" method="POST" id='afegirIdioma' autocomplete="off">
-    <select name="idioma" id="idioma" class="valor">
+  <form class="addNew" method="POST" action="controller\CRUD\afegirATaules.php" id='afegirIdioma' autocomplete="off">
+    <input type="hidden" name="taula" value="idiomes">
+    <input type="hidden" name="idTaula" value="idiomaId">
+    <input type="hidden" name="userId" value=<?php echo $user['id'] ?>>
+    <input type='hidden' name='function' value='afegirIdiomes'>
+    <select name="valor" id="idioma" class="valor">
       <option value="Castellà">Castellà</option>
       <option value="Català">Català</option>
       <option value="Anglès">Anglès</option>

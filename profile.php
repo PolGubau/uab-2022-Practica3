@@ -35,20 +35,25 @@ if ($editMode) {
 </head>
 
 <body>
+
   <?php
+  $num = '1';
+  //string to number
+  $num = (int)$num;
   $inputsToBeShown = [
-    ['Nom', $arrayDadesPeronals['nom'], 'text', 'nom'],
-    ['Cognoms', $arrayDadesPeronals['cognoms'], 'text', 'cognoms'],
-    ['Email', $arrayDadesPeronals['email'], 'text', 'email'],
-    ['Data Naixement', $arrayDadesPeronals['dataNaixement'], 'date', 'dataNaixement'],
-    ['Sexe', $arrayDadesPeronals['sexe'], 'select', 'sexe', ['Home', 'Done', 'Altres', 'Si']],
-    ['Estat Civil', $arrayDadesPeronals['estatCivil'], 'select', 'estatCivil', ['Solter', 'Vidu', 'Casat', 'Separat', 'Complicat...']],
-    ['Carnet Conduir', $arrayDadesPeronals['carnetConduir'], 'select', 'carnetConduir', ['No', 'B', 'C', 'A1', 'A2', 'C', 'C1', 'D1', 'D', 'E']],
-    ['Codi Postal', $arrayDadesPeronals['codiPostal'], 'text', 'codiPostal'],
-    ['Poblacio', $arrayDadesPeronals['poblacio'], 'text', 'poblacio'],
-    ['Provincia', $arrayDadesPeronals['provincia'], 'text', 'provincia'],
-    ['Pais', $arrayDadesPeronals['pais'], 'text', 'pais'],
-    ['Carrer', $arrayDadesPeronals['carrer'], 'text', 'carrer'],
+    ['Nom', $arrayDadesPersonals['nom'], 'text', 'nom'],
+    ['Cognoms', $arrayDadesPersonals['cognoms'], 'text', 'cognoms'],
+    ['Email', $arrayDadesPersonals['email'], 'text', 'email'],
+    ['Telèfon', (int)$arrayDadesPersonals['telefon'], 'number', 'telefon'],
+    ['Data Naixement', $arrayDadesPersonals['dataNaixement'], 'date', 'dataNaixement'],
+    ['Sexe', $arrayDadesPersonals['sexe'], 'select', 'sexe', ['Home', 'Done', 'Altres', 'Si']],
+    ['Estat Civil', $arrayDadesPersonals['estatCivil'], 'select', 'estatCivil', ['Solter', 'Vidu', 'Casat', 'Separat', 'Complicat...']],
+    ['Carnet Conduir', $arrayDadesPersonals['carnetConduir'], 'select', 'carnetConduir', ['No', 'B', 'C', 'A1', 'A2', 'C', 'C1', 'D1', 'D', 'E']],
+    ['Codi Postal', $arrayDadesPersonals['codiPostal'], 'text', 'codiPostal'],
+    ['Poblacio', $arrayDadesPersonals['poblacio'], 'text', 'poblacio'],
+    ['Provincia', $arrayDadesPersonals['provincia'], 'text', 'provincia'],
+    ['Pais', $arrayDadesPersonals['pais'], 'text', 'pais'],
+    ['Carrer', $arrayDadesPersonals['carrer'], 'text', 'carrer'],
   ];
 
   ?>
@@ -100,9 +105,14 @@ if ($editMode) {
                   <?php
                   } else if ($inputType == 'date') { ?>
                     <input required type="date" name=<?php echo $inputId ?> value=<?php echo $inputValue ?> min="1920-01-01" max="2018-12-31">
-                  <?php } else { ?>
+                  <?php
+                  } else if ($inputType == 'number') { ?>
+                    <input type=<?php echo $inputType ?> maxlength="9" minlength="9" max='999999999' required name=<?php echo $inputId ?> value="<?php echo $inputValue ?>" />
 
-                    <input required type=<?php echo $inputType ?> name=<?php echo $inputId ?> value="<?php echo $inputValue ?> " />
+                  <?php
+                  } else { ?>
+
+                    <input required type=<?php echo $inputType ?> name=<?php echo $inputId ?> value="<?php echo $inputValue ?>" />
                   <?php
                   }
                   ?>

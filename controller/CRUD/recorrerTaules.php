@@ -32,10 +32,10 @@ $_SESSION['user'] = $user;
 
 
 
-$arrayDadesPeronals = $_SESSION['user']['dadesPersonals'][0];
+$arrayDadesPersonals = $_SESSION['user']['dadesPersonals'][0];
 //save in $unfilledFieldsDadesPersonals the fields that are empty
 $unfilledFieldsDadesPersonals = array();
-foreach ($arrayDadesPeronals as $key => $value) {
+foreach ($arrayDadesPersonals as $key => $value) {
     if ($value == '') {
         array_push($unfilledFieldsDadesPersonals, $key);
     }

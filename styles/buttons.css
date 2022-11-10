@@ -7,10 +7,32 @@
     cursor: pointer;
     width: fit-content;
     width: 80%;
+    text-align: center;
     border: 1px solid var(--grey);
 }
 
 .botoEnviar:hover {
+    background-color: var(--greenHover);
+    border: 1px solid var(--white);
+    color: var(--white);
+}
+
+.buttonRedirect {
+    font-size: 17px;
+    padding: 0;
+    background-color: var(--green);
+    border-radius: 10px;
+    padding: 10px 15px;
+    cursor: pointer;
+    width: fit-content;
+    width: 80%;
+    text-align: center;
+    border: 1px solid var(--grey);
+    color: var(--white);
+    text-decoration: none;
+}
+
+.buttonRedirect:hover {
     background-color: var(--greenHover);
     border: 1px solid var(--white);
     color: var(--white);

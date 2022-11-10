@@ -1,4 +1,5 @@
 <?php
+require_once 'DB.php';
 
 // env | prod
 $env = 'prod';
@@ -15,9 +16,6 @@ if ($env === 'prod') {
     $password = 'passwordfromweb';
 }
 
-try {
-    $conn = new PDO("mysql:host=$host;dbname=$db", $user, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    echo "La connexió ha fallat: " . $e->getMessage();
-}
+$db = new DB($host, $db, $user, $password);
+$db->connect();
+$conn = $db->getConnection();

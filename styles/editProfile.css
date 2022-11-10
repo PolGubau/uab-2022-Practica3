@@ -291,3 +291,17 @@
 .formButtons button {
     border-radius: 10px;
 }
+
+.estudiAdded {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    gap: 10px;
+    max-width: 100%;
+    border: 1px solid var(--grey);
+    border-radius: 18px;
+    padding: 5px 10px;
+}
