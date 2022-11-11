@@ -25,13 +25,7 @@ class errorScreen
 
 
 if (isset($_GET['error'])) {
-    $error = $_REQUEST['error'];
-    if ($error == 404) {
-        $errorType = 'CvNotFound';
-    }
-    if ($error == 408) {
-        $errorType = 'NoConnection';
-    }
+    $errorType = $_REQUEST['error'];
 }
 
 
@@ -60,6 +54,14 @@ if (isset($_GET['error'])) {
                 break;
             case 'NoConnection':
                 $errorScreen = new errorScreen('Oupsss', "La connexió amb la Base de dades s'ha perdut", './', 'Torna a provar');
+                $errorScreen->render();
+                break;
+            case 'notYourCv':
+                $errorScreen = new errorScreen('Vaja!', "Aquest cv no et pertany, no el pots veure...", './', 'Torna a provar');
+                $errorScreen->render();
+                break;
+            default:
+                $errorScreen = new errorScreen('Oupsss', "Alguna cosa ha sortit malament...", './', 'Torna a provar');
                 $errorScreen->render();
                 break;
         }

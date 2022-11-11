@@ -28,6 +28,10 @@ class CV
     {
         return $this->id;
     }
+    public function getCvOwner()
+    {
+        return $this->metadata['userId'];
+    }
     public function getPart($part)
     {
         return $this->$part;

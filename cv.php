@@ -22,20 +22,34 @@ $_SESSION['lastCvSeen'] = $cvId;
 $arrayCvs = getCv($conn, $cvId);
 // we need to check if the cv exists
 if (count($arrayCvs) == 0) {
-  header("Location: ./error.php?error=404");
+  header("Location: ./error.php?error=CvNotFound");
   die;
 }
+
+
+
+
 $cv = completeCv($conn, $cvId);
+
+// we need to check if the cv is yours, you can only see your own cv
+
+if ($cv->getCvOwner() != $id) {
+  header("Location: ./error.php?error=notYourCv");
+  die;
+}
+
+
+
 $nomComplet = $cv->getFullName();
 $dadesPersonalsCv = $cv->getPart('dadesPersonals');
 
 
 
-if (isset($_GET['download'])) {
-  //download the actual file in pdf format
-  $cv->download();
-  die;
-}
+// if (isset($_GET['download'])) {
+//   //download the actual file in pdf format
+//   $cv->download();
+//   die;
+// }
 // use $bigCv->getPart('smt') to get the data from the cv
 
 
@@ -69,7 +83,9 @@ if (isset($_GET['download'])) {
     <div class="settingsLeft">
       <a class="logout" href="./controller/logout.php">Logout</a>
       <a href="profile.php">Profile</a>
-      <a href="cv.php?id=<?php echo $cvId ?>&download">Download</a>
+      <a href="./">Go Home</a>
+      <a href="views/download.php?id=<?php echo $cvId ?>">Download</a>
+      <!-- <a href="cv.php?id=<?php echo $cvId ?>&download">Download</a> -->
     </div>
 
     <div class="header">
@@ -228,7 +244,7 @@ if (isset($_GET['download'])) {
         <div class="section">
           <div class="titulo">
             <i class="fa-solid fa-angles-right"></i>
-            <h4>Educación</h4>
+            <h4>Educació</h4>
           </div>
           <div>
             <?php
