@@ -91,6 +91,8 @@ body {
 }
 
 .settingsLeft a {
+    border: 5px solid white;
+    border-left: none;
     color: var(--black);
     text-decoration: none;
     font-size: 0.9em;
@@ -99,7 +101,6 @@ body {
     align-items: center;
     justify-content: center;
     padding: 10px;
-    border: none;
     cursor: pointer;
     background-color: var(--lightGrey);
     border-radius: 0 20px 20px 0;
@@ -107,6 +108,7 @@ body {
 }
 
 .settingsLeft> :first-child {
+    border-top: none;
     border-radius: 20px 0 20px 0;
 }
 

@@ -29,6 +29,9 @@ if (isset($_GET['error'])) {
     if ($error == 404) {
         $errorType = 'CvNotFound';
     }
+    if ($error == 408) {
+        $errorType = 'NoConnection';
+    }
 }
 
 
@@ -53,6 +56,10 @@ if (isset($_GET['error'])) {
         switch ($errorType) {
             case 'CvNotFound':
                 $errorScreen = new errorScreen('404', 'El cv que busques no existeix', './', 'Torna a l\'inici');
+                $errorScreen->render();
+                break;
+            case 'NoConnection':
+                $errorScreen = new errorScreen('Oupsss', "La connexió amb la Base de dades s'ha perdut", './', 'Torna a provar');
                 $errorScreen->render();
                 break;
         }

@@ -4,8 +4,7 @@
 class CV
 {
     public $id;
-    public $nom;
-    public $perfil;
+    public $metadata;
     public $dadesPersonals;
     public $experiencia;
     public $estudis;
@@ -40,5 +39,15 @@ class CV
     public function getAdress()
     {
         return $this->dadesPersonals['carrer'] . ', ' . $this->dadesPersonals['poblacio'] . ', ' . $this->dadesPersonals['provincia'] . '.';
+    }
+    public function download()
+    {
+        $file = 'cv.pdf';
+        $filename = 'cv.pdf';
+        header('Content-type: application/pdf');
+        header('Content-Disposition: inline; filename="' . $filename . '"');
+        header('Content-Transfer-Encoding: binary');
+        header('Accept-Ranges: bytes');
+        // @readfile($file);
     }
 };

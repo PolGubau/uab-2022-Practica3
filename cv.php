@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once 'Classes/CV.php';
 
 require_once './controller/redirect5secs.php';
 require_once './model/config.php';
@@ -12,9 +13,12 @@ if (!isset($_REQUEST['id'])) {
   header("Location: ./");
   die;
 }
+
 // Now we need to get the cvId from the url
 
 $cvId = $_REQUEST['id'];
+$_SESSION['lastCvSeen'] = $cvId;
+
 $arrayCvs = getCv($conn, $cvId);
 // we need to check if the cv exists
 if (count($arrayCvs) == 0) {
@@ -25,10 +29,18 @@ $cv = completeCv($conn, $cvId);
 $nomComplet = $cv->getFullName();
 $dadesPersonalsCv = $cv->getPart('dadesPersonals');
 
+
+
+if (isset($_GET['download'])) {
+  //download the actual file in pdf format
+  $cv->download();
+  die;
+}
 // use $bigCv->getPart('smt') to get the data from the cv
 
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -51,9 +63,15 @@ $dadesPersonalsCv = $cv->getPart('dadesPersonals');
 </head>
 
 <body>
-  <a href="./controller/logout.php" class="logout">Tancar Sessió</a>
-  <a href="./" class="return">Anar a l'inici</a>
+
+
   <div class="container">
+    <div class="settingsLeft">
+      <a class="logout" href="./controller/logout.php">Logout</a>
+      <a href="profile.php">Profile</a>
+      <a href="cv.php?id=<?php echo $cvId ?>&download">Download</a>
+    </div>
+
     <div class="header">
       <h1 class="tituloprincipal"><?php echo ($nomComplet) ?></h1>
     </div>
@@ -78,27 +96,93 @@ $dadesPersonalsCv = $cv->getPart('dadesPersonals');
             </ul>
           </div>
         </div>
-
-
-
-
-
+        <!-- habilitats -->
         <div class="section">
           <div class="titulo"><i class="fa-solid fa-angles-right"></i>
-            <h4>Competencies
-            </h4>
+            <h4>Habilitats</h4>
           </div>
           <div>
-            <div>
+            <?php
+            $habilitats = $cv->getPart('habilitats');
+            foreach ($habilitats as $habilitat) {
+              $habilitat = $habilitat[0];
+            ?>
 
-              <ul>
-                <li class="item_lista"><i class="fa-solid fa-caret-right"></i>Comunicación</li>
-                <li class="item_lista"><i class="fa-solid fa-caret-right"></i>Trabajo en equipo</li>
+              <article class="article">
+                <div class="col-5 row_barras">
+                  <?php echo $habilitat['habilitatValor']; ?>
+                  <div class="barra_base">
+                    <div class="barra_nivel" style="width: <?php echo $habilitat['habilitatNivell']; ?>%">
+                    </div>
+                  </div>
+                </div>
+              </article>
+            <?php
 
-              </ul>
-            </div>
+            }
+            ?>
+
           </div>
         </div>
+
+        <!-- idiomes -->
+        <div class="section">
+          <div class="titulo"><i class="fa-solid fa-angles-right"></i>
+            <h4>Idiomes</h4>
+          </div>
+          <div>
+            <?php
+            $idiomes = $cv->getPart('idiomes');
+            foreach ($idiomes as $idioma) {
+              $idioma = $idioma[0];
+            ?>
+
+              <article class="article">
+                <div class="col-5 row_barras">
+                  <?php echo $idioma['idiomaNom']; ?>
+                  <div class="barra_base">
+                    <div class="barra_nivel" style="width: <?php echo $idioma['idiomaNivell']; ?>%">
+                    </div>
+                  </div>
+                </div>
+              </article>
+            <?php
+
+            }
+            ?>
+
+          </div>
+        </div>
+
+        <!-- informatica -->
+        <div class="section">
+          <div class="titulo"><i class="fa-solid fa-angles-right"></i>
+            <h4>Informàtica</h4>
+          </div>
+          <div>
+            <?php
+            $informaticas = $cv->getPart('informatica');
+            foreach ($informaticas as $informatica) {
+              $informatica = $informatica[0];
+            ?>
+
+              <article class="article">
+                <div class="col-5 row_barras">
+                  <?php echo $informatica['informaticaNom']; ?>
+                  <div class="barra_base">
+                    <div class="barra_nivel" style="width: <?php echo $informatica['informaticaNivell']; ?>%">
+                    </div>
+                  </div>
+                </div>
+              </article>
+            <?php
+
+            }
+            ?>
+
+          </div>
+        </div>
+
       </div>
       <div class="col2">
         <div class="section">
@@ -119,26 +203,21 @@ $dadesPersonalsCv = $cv->getPart('dadesPersonals');
           </div>
           <div>
             <?php
-            $exps = $cv->getPart('experiencies')[0];
-
+            $exps = $cv->getPart('experiencies');
             foreach ($exps as $exp) {
+              $exp = $exp[0];
             ?>
 
-              <div>
-                <div class="explicacion">
-                  <div class="col-5">
-                    <?php echo $exp['experienciaDataInici'] . ' - ' . $exp['experienciaDataFi']; ?>
-
-                  </div>
-                  <div class="col-7">
-                    <span><?php echo $exp['experienciaTitol'] ?></span>
-                    <p class="universidad"><?php echo $exp['experienciaEmpresa'] . ' - ' . $exp['experienciaUbicacio']; ?></p>
-                    <span><?php echo $exp['experienciaDescripcio'] ?></span>
-
-
-                  </div>
+              <article class="article">
+                <div class="col-5">
+                  <?php echo $exp['experienciaDataInici'] . ' - ' . $exp['experienciaDataFi']; ?>
                 </div>
-              </div>
+                <div class="col-7 articleContent">
+                  <span><?php echo $exp['experienciaTitol'] ?></span>
+                  <p class="greyText"><?php echo $exp['experienciaEmpresa'] . ' - ' . $exp['experienciaUbicacio']; ?></p>
+                  <span><?php echo $exp['experienciaDescripcio'] ?></span>
+                </div>
+              </article>
             <?php
 
             }
@@ -152,22 +231,30 @@ $dadesPersonalsCv = $cv->getPart('dadesPersonals');
             <h4>Educación</h4>
           </div>
           <div>
+            <?php
+            $exps = $cv->getPart('estudis');
+            foreach ($exps as $exp) {
+              $exp = $exp[0];
+            ?>
 
-            <div>
-              <div class="explicacion">
-                <div class="col-5">08/2009 - Presente</div>
-                <div class="col-7">
-                  <span>Contador Público.</span>
-                  <p class="universidad">Universidad de Buenos Aires (UBA) - Buenos Aires - Promedio: 8.</p>
-                  <span>Durante mi formación, me he capacitado para asesorar personas y empresas en las áreas financera,
-                    impositiva, contable, laboral, de costos, y societaria. Diseñar, interpretar e implementar sistemas de
-                    información contables, dentro de las organizaciones públicas y privadas para la toma de decisiones.
-                  </span>
+              <article class="article">
+                <div class="col-5">
+                  <?php echo $exp['estudiDataInici'] . ' - ' . $exp['estudiDataFi']; ?>
+
+                </div>
+                <div class="col-7 articleContent">
+                  <span><?php echo $exp['estudiTitol'] ?></span>
+                  <p class="greyText"><?php echo $exp['estudiEmpresa'] . ' - ' . $exp['estudiUbicacio']; ?></p>
+                  <span><?php echo $exp['estudiDescripcio'] ?></span>
 
 
                 </div>
-              </div>
-            </div>
+              </article>
+            <?php
+
+            }
+            ?>
+
           </div>
         </div>
 
@@ -179,3 +266,13 @@ $dadesPersonalsCv = $cv->getPart('dadesPersonals');
 </body>
 
 </html>
+
+
+<?php
+
+
+
+
+// echo '<pre>';
+// print_r($cv);
+// echo '</pre>';

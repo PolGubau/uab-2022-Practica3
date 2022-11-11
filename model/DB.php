@@ -22,7 +22,7 @@ class DB
             $this->conn = new PDO("mysql:host=$this->host;dbname=$this->db", $this->user, $this->password);
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
-            header('Location: ./error.php');
+            header('Location: ./error.php?error=408');
             echo "La connexió ha fallat: " . $e->getMessage();
         }
     }

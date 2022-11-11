@@ -36,7 +36,7 @@
   }
 
   .section {
-      margin-bottom: 10px;
+      margin-bottom: 20px;
       display: flex;
       flex-direction: column;
   }
@@ -77,10 +77,16 @@
       margin-bottom: 4px;
   }
 
-  .explicacion {
+  .article {
       display: flex;
-      margin-bottom: 10px;
+      margin-bottom: 17px;
 
+  }
+
+  .articleContent {
+      background-color: var(--lightGrey);
+      padding: 10px 15px;
+      border-radius: 20px;
   }
 
   h4 {
@@ -204,4 +210,35 @@
           display: flex;
           flex-direction: column;
       }
+  }
+
+
+  .greyText {
+      color: var(--grey);
+  }
+
+  .barra_base {
+      background-color: var(--lightGrey);
+      position: relative;
+      width: 100%;
+      height: 10px;
+      border-radius: 5px;
+
+  }
+
+  .barra_nivel {
+      background-color: var(--grey);
+      position: absolute;
+      height: 10px;
+      border-radius: 5px;
+  }
+
+  .row_barras {
+      display: grid;
+      width: 100%;
+      grid-template-columns: 1fr 4fr;
+      align-content: center;
+      justify-items: stretch;
+      align-items: center;
+      justify-content: center;
   }
