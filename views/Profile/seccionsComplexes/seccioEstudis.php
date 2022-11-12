@@ -69,24 +69,32 @@ $array = $user['estudis'];
       ?>
         <div class="estudiAdded">
 
-          <input disabled type="text" name="estudiTitol" placeholder="Titol a l'empresa: " required value=<?php echo $element['estudiTitol'] ?>>
-          <input disabled type="text" name="estudiEmpresa" placeholder="Nom de l'empresa: " required value=<?php echo $element['estudiEmpresa'] ?>>
-          <input type="text" name="estudiUbicacio" placeholder="Lloc de l'empresa: " required value=<?php echo $element['estudiUbicacio'] ?>>
-          <textarea disabled name="estudiDescripcio" placeholder="Descripció de l'experiència: " required><?php echo $element['estudiDescripcio'] ?></textarea>
-          <div class="formMultipleLines">
-            <div>
-              <label for="estudiDataInici">Data Inici</label>
-              <input disabled type="date" name="estudiDataInici" placeholder="Data d'inici: " required value=<?php echo $element['estudiDataInici'] ?>>
-            </div>
-            <div>
-              <label for="estudiDataFi">Data Final</label>
-              <input disabled type="date" name="estudiDataFi" placeholder="Data de finalització: " required value=<?php echo $element['estudiDataFi'] ?>>
-            </div>
-
+          <div class="fieldNoEdit">
+            <label for="estudiTitol">Titol a l'empresa</label>
+            <p><?php echo $element['estudiTitol'] ?></p>
           </div>
-
-
-
+          <div class="fieldNoEdit">
+            <label for="estudiTitol">Nom de l'empresa</label>
+            <p><?php echo $element['estudiEmpresa'] ?></p>
+          </div>
+          <div class="fieldNoEdit">
+            <label for="estudiTitol">Lloc de l'empresa</label>
+            <p><?php echo $element['estudiUbicacio'] ?></p>
+          </div>
+          <div class="fieldNoEdit">
+            <label for="estudiTitol">Descripció de l'experiència</label>
+            <p><?php echo $element['estudiDescripcio'] ?></p>
+          </div>
+          <div class="formMultipleLines">
+            <div class="fieldNoEdit">
+              <label for="estudiTitol">Data Inici</label>
+              <p><?php echo $element['estudiDataInici'] ?></p>
+            </div>
+            <div class="fieldNoEdit">
+              <label for="estudiTitol">Data Final</label>
+              <p><?php echo $element['estudiDataFi'] ?></p>
+            </div>
+          </div>
         </div>
   <?php
       }
@@ -95,6 +103,8 @@ $array = $user['estudis'];
 
   ?>
   <form class="formLarge formLargeNew" method="POST" id='new' action='controller\CRUD\afegirATaules.php' autocomplete="off">
+    <h3>Afegeix un nou idioma</h3>
+
     <input type="hidden" name="taula" value="estudis">
     <input type="hidden" name="idTaula" value="estudiId">
     <input type="hidden" name="idUsuari" value=<?php echo $user['id'] ?>>

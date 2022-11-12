@@ -4,7 +4,7 @@ session_start();
 require './model/config.php';
 require './model/database.php';
 require_once './controller/CRUD/recorrerTaules.php';
-
+require_once './libraries/extras/allCountries.php';
 
 
 $editMode = false;
@@ -32,36 +32,59 @@ if ($editMode) {
 
   <title>Your profile</title>
 
+  <script>
+    function sendValues(str, input) {
+      const inputId = input.id;
+      console.log(str, inputId);
+      const xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          console.log(this.responseText);
+          $responseFromServer = this.responseText.replace(/\s/g, '');
+
+          //check if user exists
+          if ($responseFromServer == 'UsernameTaken') {
+            document.getElementById(inputId).style.border = '2px solid red';
+            document.getElementById(inputId).style.color = 'red';
+          } else {
+            document.getElementById(inputId).style.border = '1px solid #ccc';
+            document.getElementById(inputId).style.color = '#808080';
+          }
+
+        }
+      };
+      xhttp.open("GET", "controller/CRUD/modificarTaules.php?modificantPersonsalAjax&value=" + str + "&inputId=" + inputId, true);
+      xhttp.send();
+
+    }
+  </script>
 </head>
 
 <body>
 
   <?php
-  $num = '1';
-  //string to number
-  $num = (int)$num;
+
   $inputsToBeShown = [
     ['Nom', $arrayDadesPersonals['nom'], 'text', 'nom'],
     ['Cognoms', $arrayDadesPersonals['cognoms'], 'text', 'cognoms'],
     ['Email', $arrayDadesPersonals['email'], 'text', 'email'],
     ['Telèfon', (int)$arrayDadesPersonals['telefon'], 'number', 'telefon'],
-    ['Data Naixement', $arrayDadesPersonals['dataNaixement'], 'date', 'dataNaixement'],
+    ['Naixement', $arrayDadesPersonals['dataNaixement'], 'date', 'dataNaixement'],
     ['Sexe', $arrayDadesPersonals['sexe'], 'select', 'sexe', ['Home', 'Done', 'Altres', 'Si']],
     ['Estat Civil', $arrayDadesPersonals['estatCivil'], 'select', 'estatCivil', ['Solter', 'Vidu', 'Casat', 'Separat', 'Complicat...']],
     ['Carnet Conduir', $arrayDadesPersonals['carnetConduir'], 'select', 'carnetConduir', ['No', 'B', 'C', 'A1', 'A2', 'C', 'C1', 'D1', 'D', 'E']],
     ['Codi Postal', $arrayDadesPersonals['codiPostal'], 'text', 'codiPostal'],
     ['Poblacio', $arrayDadesPersonals['poblacio'], 'text', 'poblacio'],
     ['Provincia', $arrayDadesPersonals['provincia'], 'text', 'provincia'],
-    ['Pais', $arrayDadesPersonals['pais'], 'text', 'pais'],
+    ['Pais', $arrayDadesPersonals['pais'], 'select', 'pais', $allCountries],
     ['Carrer', $arrayDadesPersonals['carrer'], 'text', 'carrer'],
+    ["Usuari", $arrayDadesPersonals['userName'], 'text', 'userName'],
   ];
 
   ?>
   <section class="container">
     <div class="settingsLeft">
-      <a href="./">Go Back</a>
-
-      <a class="logout" href="./controller/logout.php">Logout</a>
+      <a href="./">Torna a Inici</a>
     </div>
     <div class="settingsRight">
       <a href=<?php echo $urlWhenEdit  ?>><?php echo $editMode ? 'Save' : 'Edit'  ?></a>
@@ -86,40 +109,38 @@ if ($editMode) {
             <div class="dadesPersonals">
               <?php if ($editMode) { ?>
 
-                <form method="POST" action="./controller/CRUD/modificarTaules.php" class="inputContainer">
 
-                  <?php
+                <?php
 
-                  if ($inputType == 'select') { ?>
+                if ($inputType == 'select') { ?>
 
 
-                    <select name=<?php echo $inputId ?>>
-                      <?php foreach ($optionsIfSelect as $option) { ?>
-                        <option value=<?php echo $option ?> <?php echo $option == $inputValue ? 'selected' : '' ?>>
+                  <select class="singleInput" name=<?php echo $inputId ?> onchange="sendValues(this.value, <?php echo $inputId ?>)" id="<?php echo $inputId ?>">
+                    <?php foreach ($optionsIfSelect as $option) { ?>
+                      <option value=<?php echo $option ?> <?php echo $option == $inputValue ? 'selected' : '' ?>>
 
-                          <?php echo $option ?>
+                        <?php echo $option ?>
 
-                        </option>
-                      <?php } ?>
-                    </select>
-                  <?php
-                  } else if ($inputType == 'date') { ?>
-                    <input required type="date" name=<?php echo $inputId ?> value=<?php echo $inputValue ?> min="1920-01-01" max="2018-12-31">
-                  <?php
-                  } else if ($inputType == 'number') { ?>
-                    <input type=<?php echo $inputType ?> maxlength="9" minlength="9" max='999999999' required name=<?php echo $inputId ?> value="<?php echo $inputValue ?>" />
+                      </option>
+                    <?php } ?>
+                  </select>
+                <?php
+                } else if ($inputType == 'date') { ?>
+                  <input class="singleInput" required type="date" name=<?php echo $inputId ?> value=<?php echo $inputValue ?> min="1920-01-01" max="2018-12-31" id="<?php echo $inputId ?>" onchange="sendValues(this.value, <?php echo $inputId ?>)">
+                <?php
+                } else if ($inputType == 'number') { ?>
+                  <input class="singleInput" type=<?php echo $inputType ?> pattern="[0-9]" maxlength="9" minlength="9" max='999999999' required name=<?php echo $inputId ?> value="<?php echo $inputValue ?>" onkeyup="sendValues(this.value, <?php echo $inputId ?>)" id="<?php echo $inputId ?>" />
 
-                  <?php
-                  } else { ?>
+                <?php
+                } else { ?>
 
-                    <input required type=<?php echo $inputType ?> name=<?php echo $inputId ?> value="<?php echo $inputValue ?>" />
-                  <?php
-                  }
-                  ?>
-                  <button type="submit" value="Modifiar" name="modificaUnaDadaPersonal" class="editButton editButtonInput"> <i class="fa-solid fa-floppy-disk"></i>
-                  </button>
+                  <input class="singleInput" required type=<?php echo $inputType ?> name=<?php echo $inputId ?> value="<?php echo $inputValue ?>" onkeyup="sendValues(this.value, <?php echo $inputId ?>)" id="<?php echo $inputId ?>" />
+                <?php
+                }
+                ?>
 
-                </form>
+                </button>
+
 
                 <?php
               } else {

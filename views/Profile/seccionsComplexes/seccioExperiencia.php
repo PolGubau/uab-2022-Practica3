@@ -58,16 +58,37 @@ $array = $user['experiencies'];
                     </div>
                 <?php
                 }
-            } else {
-                foreach ($array as $idioma) {
+            }
+            if (!$editMode) {
+                foreach ($array as $element) {
                 ?>
-                    <div class="progressContainer">
-                        <p><?php echo $idioma['habilitatValor'] ?> </p>
-                        <div class="progress">
-                            <div class="percent" style="width:<?php echo  strval($idioma['habilitatNivell']) ?>%">
-                                <div class="accent"></div>
+                    <div class="estudiAdded">
+
+                        <div class="fieldNoEdit">
+                            <label>Titol a l'empresa</label>
+                            <p><?php echo $element['experienciaTitol'] ?></p>
+                        </div>
+                        <div class="fieldNoEdit">
+                            <label>Nom de l'empresa</label>
+                            <p><?php echo $element['experienciaEmpresa'] ?></p>
+                        </div>
+                        <div class="fieldNoEdit">
+                            <label>Lloc de l'empresa</label>
+                            <p><?php echo $element['experienciaUbicacio'] ?></p>
+                        </div>
+                        <div class="fieldNoEdit">
+                            <label>Descripció de l'experiència</label>
+                            <p><?php echo $element['experienciaDescripcio'] ?></p>
+                        </div>
+                        <div class="formMultipleLines">
+                            <div class="fieldNoEdit">
+                                <label>Data Inici</label>
+                                <p><?php echo $element['experienciaDataInici'] ?></p>
                             </div>
-                            <div class=" background"></div>
+                            <div class="fieldNoEdit">
+                                <label>Data Final</label>
+                                <p><?php echo $element['experienciaDataFi'] ?></p>
+                            </div>
                         </div>
                     </div>
         <?php
@@ -78,6 +99,8 @@ $array = $user['experiencies'];
         ?>
     </div>
     <form class="formLarge formLargeNew" method="POST" id='new' action='controller/CRUD/afegirATaules.php' autocomplete="off">
+        <h3>Afegeix una nova experiència</h3>
+
         <input type="hidden" name="taula" value="experiencies">
         <input type="hidden" name="idTaula" value="experienciaId">
         <input type="hidden" name="idUsuari" value=<?php echo $user['id'] ?>>

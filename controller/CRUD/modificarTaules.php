@@ -5,7 +5,25 @@ require_once '../../model/config.php';
 require_once './recorrerTaules.php';
 
 
+if (isset($_GET['modificantPersonsalAjax'])) {
 
+    // updateTable($taula,  $camp, $valor, $id, $conn, $keyField = 'id')
+    if ($_GET['inputId'] == 'userName') {
+        // before updating the username, we need to check if the username is already taken using seleccionaUsuari function
+        $user = seleccionaUsuari($conn, $_GET['value']);
+        if ($user) {
+            $reponse = 'UsernameTaken';
+            //delete spaces
+            $reponse = str_replace(' ', '', $reponse);
+            echo $reponse;
+            die;
+        } else {
+            echo 'Username available';
+        }
+    }
+    updateTable('usuaris', $_GET['inputId'], $_GET['value'], $id, $conn);
+    exit;
+}
 
 if (isset($_POST['modificaUnaDadaPersonal'])) {
     echo 'Modificant dades personals';
@@ -114,7 +132,6 @@ if (isset($_POST['modificaUnaDadaPersonal'])) {
     exit();
 }
 
-
 if (isset($_POST['modificarIdioma'])) {
     $idIdioma = $_POST['id'];
     $nivell = $_POST['nivell'];
@@ -134,11 +151,6 @@ if (isset($_POST['modificaInformatica'])) {
     modificaInformatica($conn, $id, $nivell);
     header('Location: ../../profile.php?edit');
 }
-
-
-
-
-
 
 if (isset($_POST['modificarExperiencia'])) {
     $userId = $_POST['idUsuari'];
@@ -172,20 +184,6 @@ if (isset($_POST['modificarEstudis'])) {
     header('Location: ../../profile.php?edit');
     exit();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

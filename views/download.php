@@ -252,6 +252,6 @@ $dompdf->stream("cv_$nomComplet.pdf", array("Attachment" => true));
 
 
 
-header('Location: ../index.php');
+// header("Location: ..//cv.php?id=$cvId.php");
 
 ?>

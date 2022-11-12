@@ -81,11 +81,11 @@ $dadesPersonalsCv = $cv->getPart('dadesPersonals');
 
   <div class="container">
     <div class="settingsLeft">
-      <a class="logout" href="./controller/logout.php">Logout</a>
-      <a href="profile.php">Profile</a>
-      <a href="./">Go Home</a>
-      <a href="views/download.php?id=<?php echo $cvId ?>">Download</a>
-      <!-- <a href="cv.php?id=<?php echo $cvId ?>&download">Download</a> -->
+      <a href="./">Anar a inici</a>
+    </div>
+    <div class="settingsRight">
+      <a href="profile.php">El teu perfil</a>
+      <a href="views/download.php?id=<?php echo $cvId ?>">Descarregar</a>
     </div>
 
     <div class="header">

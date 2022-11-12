@@ -79,6 +79,11 @@ $array = $user['idiomes'];
       <option value="Castellà">Castellà</option>
       <option value="Català">Català</option>
       <option value="Anglès">Anglès</option>
+      <option value="Alemany">Alemany</option>
+      <option value="Italià">Italià</option>
+      <option value="Francès">Francès</option>
+      <option value="LGTB">LGTB</option>
+      <option value="Àrab">Àrab</option>
     </select>
 
 

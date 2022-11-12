@@ -40,10 +40,10 @@ $arrayCvs = getAllCvs($conn, $_SESSION['user']['id']);
 
     <section class="container">
         <div class="settingsLeft">
-            <a class="logout" href="./controller/logout.php">Logout</a>
+            <a class="logout" href="./controller/logout.php">Tancar sessió</a>
         </div>
         <div class="settingsRight">
-            <a href="./profile.php">Profile</a>
+            <a href="./profile.php">El teu perfil</a>
         </div>
 
         <!--  -->
