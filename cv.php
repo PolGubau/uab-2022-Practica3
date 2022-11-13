@@ -27,8 +27,6 @@ if (count($arrayCvs) == 0) {
 }
 
 
-
-
 $cv = completeCv($conn, $cvId);
 
 // we need to check if the cv is yours, you can only see your own cv
@@ -38,19 +36,14 @@ if ($cv->getCvOwner() != $id) {
   die;
 }
 
-
-
 $nomComplet = $cv->getFullName();
 $dadesPersonalsCv = $cv->getPart('dadesPersonals');
-
-
-
-// if (isset($_GET['download'])) {
-//   //download the actual file in pdf format
-//   $cv->download();
-//   die;
-// }
-// use $bigCv->getPart('smt') to get the data from the cv
+$competencies = $cv->getPart('competencies');
+$habilitats = $cv->getPart('habilitats');
+$idiomes = $cv->getPart('idiomes');
+$informaticas = $cv->getPart('informatica');
+$experiencies = $cv->getPart('experiencies');
+$estudis = $cv->getPart('estudis');
 
 
 ?>
@@ -116,183 +109,22 @@ $dadesPersonalsCv = $cv->getPart('dadesPersonals');
             </ul>
           </div>
         </div>
-        <!-- habilitats -->
-        <div class="section">
-          <div class="titulo"><i class="fa-solid fa-angles-right"></i>
-            <h4>Habilitats</h4>
-          </div>
-          <div>
-            <?php
-            $habilitats = $cv->getPart('habilitats');
-            foreach ($habilitats as $habilitat) {
-              $habilitat = $habilitat[0];
-            ?>
-
-              <article class="article">
-                <div class="col-5 row_barras">
-                  <?php echo $habilitat['habilitatValor']; ?>
-                  <div class="barra_base">
-                    <div class="barra_nivel" style="width: <?php echo $habilitat['habilitatNivell']; ?>%">
-                    </div>
-                  </div>
-                </div>
-              </article>
-            <?php
-
-            }
-            ?>
-
-          </div>
-        </div>
-
-        <!-- idiomes -->
-        <div class="section">
-          <div class="titulo"><i class="fa-solid fa-angles-right"></i>
-            <h4>Idiomes</h4>
-          </div>
-          <div>
-            <?php
-            $idiomes = $cv->getPart('idiomes');
-            foreach ($idiomes as $idioma) {
-              $idioma = $idioma[0];
-            ?>
-
-              <article class="article">
-                <div class="col-5 row_barras">
-                  <?php echo $idioma['idiomaNom']; ?>
-                  <div class="barra_base">
-                    <div class="barra_nivel" style="width: <?php echo $idioma['idiomaNivell']; ?>%">
-                    </div>
-                  </div>
-                </div>
-              </article>
-            <?php
-
-            }
-            ?>
-
-          </div>
-        </div>
-
-        <!-- informatica -->
-        <div class="section">
-          <div class="titulo"><i class="fa-solid fa-angles-right"></i>
-            <h4>Informàtica</h4>
-          </div>
-          <div>
-            <?php
-            $informaticas = $cv->getPart('informatica');
-            foreach ($informaticas as $informatica) {
-              $informatica = $informatica[0];
-            ?>
-
-              <article class="article">
-                <div class="col-5 row_barras">
-                  <?php echo $informatica['informaticaNom']; ?>
-                  <div class="barra_base">
-                    <div class="barra_nivel" style="width: <?php echo $informatica['informaticaNivell']; ?>%">
-                    </div>
-                  </div>
-                </div>
-              </article>
-            <?php
-
-            }
-            ?>
-
-          </div>
-        </div>
-
+        <?php require_once './views/cv/competencies.php'; ?>
+        <?php require_once './views/cv/habilitats.php'; ?>
+        <?php require_once './views/cv/idiomes.php'; ?>
+        <?php require_once './views/cv/informaticas.php'; ?>
       </div>
+
       <div class="col2">
-        <div class="section">
-          <!-- Columna derecha -->
-          <div>
-            <div class="titulo"><i class="fa-solid fa-angles-right"></i>
-              <h4>Perfil
-              </h4>
-            </div>
-            <p>
-              <?php echo $cv->getPart('metadata')['perfil'] ?>
-            </p>
-          </div>
-        </div>
-        <div class="section">
-          <div class="titulo"><i class="fa-solid fa-angles-right"></i>
-            <h4>Experiencia laboral</h4>
-          </div>
-          <div>
-            <?php
-            $exps = $cv->getPart('experiencies');
-            foreach ($exps as $exp) {
-              $exp = $exp[0];
-            ?>
 
-              <article class="article">
-                <div class="col-5">
-                  <?php echo $exp['experienciaDataInici'] . ' - ' . $exp['experienciaDataFi']; ?>
-                </div>
-                <div class="col-7 articleContent">
-                  <span><?php echo $exp['experienciaTitol'] ?></span>
-                  <p class="greyText"><?php echo $exp['experienciaEmpresa'] . ' - ' . $exp['experienciaUbicacio']; ?></p>
-                  <span><?php echo $exp['experienciaDescripcio'] ?></span>
-                </div>
-              </article>
-            <?php
-
-            }
-            ?>
-
-          </div>
-        </div>
-        <div class="section">
-          <div class="titulo">
-            <i class="fa-solid fa-angles-right"></i>
-            <h4>Educació</h4>
-          </div>
-          <div>
-            <?php
-            $exps = $cv->getPart('estudis');
-            foreach ($exps as $exp) {
-              $exp = $exp[0];
-            ?>
-
-              <article class="article">
-                <div class="col-5">
-                  <?php echo $exp['estudiDataInici'] . ' - ' . $exp['estudiDataFi']; ?>
-
-                </div>
-                <div class="col-7 articleContent">
-                  <span><?php echo $exp['estudiTitol'] ?></span>
-                  <p class="greyText"><?php echo $exp['estudiEmpresa'] . ' - ' . $exp['estudiUbicacio']; ?></p>
-                  <span><?php echo $exp['estudiDescripcio'] ?></span>
-
-
-                </div>
-              </article>
-            <?php
-
-            }
-            ?>
-
-          </div>
-        </div>
+        <?php require_once './views/cv/perfil.php'; ?>
+        <?php require_once './views/cv/experiencies.php'; ?>
+        <?php require_once './views/cv/estudis.php'; ?>
 
       </div>
-
   </div>
   </section>
   </div>
 </body>
 
 </html>
-
-
-<?php
-
-
-
-
-// echo '<pre>';
-// print_r($cv);
-// echo '</pre>';

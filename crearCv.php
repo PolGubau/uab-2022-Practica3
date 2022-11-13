@@ -10,6 +10,7 @@ $habilitats = $user['habilitats'];
 $informatica = $user['informatica'];
 $estudis = $user['estudis'];
 $experiencies = $user['experiencies'];
+$competencies = $user['competencies'];
 ?>
 
 
@@ -79,6 +80,38 @@ $experiencies = $user['experiencies'];
         <textarea name="cvPerfil" class="cvPerfil" placeholder="Com et descriuries en aquest curriculum? " required></textarea>
 
 
+        <div class='seccióIdiomes'>
+          <h4>Quines competencies vols afegir? </h4>
+          <div class="idiomes">
+            <?php
+            //ask wich of his languages wants to add to the cv
+            if (count($competencies) == 0) {
+              echo 'No tens competencies al teu perfil';
+            } else {
+              foreach ($competencies as $c) {
+
+                $valor = $c['valor'];
+                $id = $c['id'];
+
+            ?>
+
+                <div class='idioma'>
+                  <input type='checkbox' name='competenciesChecks[]' class='inputCheck' value='<?php echo $id ?>'>
+                  <div class='textIdioma'>
+                    <p class='nomIdioma'><?php echo $valor ?></p>
+                    <div class='nivellIdioma'>
+
+                    </div>
+                  </div>
+                </div>
+
+            <?php
+
+              }
+            }
+            ?>
+          </div>
+        </div>
         <div class='seccióIdiomes'>
           <h4>Quines habilitats vols afegir? </h4>
           <div class="idiomes">

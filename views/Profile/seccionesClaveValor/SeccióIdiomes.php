@@ -6,7 +6,7 @@ $array = $user['idiomes'];
 ?>
 
 <section class="section">
-  <div class="upperPart">
+  <div class="sectionTopPart">
 
     <p class="sectionHeading">Els teus idiomes</p>
 

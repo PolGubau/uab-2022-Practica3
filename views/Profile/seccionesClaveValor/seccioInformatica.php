@@ -33,7 +33,7 @@ $array = $user['informatica'];
 ?>
 
 <section class="section">
-    <div class="upperPart">
+    <div class="sectionTopPart">
 
         <p class="sectionHeading">Informàtica</p>
 

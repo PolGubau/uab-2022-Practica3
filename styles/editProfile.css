@@ -70,22 +70,31 @@
 
 .progressContainer {
     position: relative;
-    background-color: var(--lightGrey);
+    background-color: var(--white);
     display: flex;
-    margin: 0;
+    margin: 2%;
+    padding: 5px;
+    border-radius: 20px;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: space-between;
     text-align: center;
     align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
+    gap: 2%;
     align-content: center;
 }
 
-.deleteButtonFloating {
+
+
+.deleteComplex {
     position: absolute;
-    right: 0;
-    bottom: 0;
+    right: 10px;
+    bottom: 10px;
+}
+
+.modifyComplex {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
 }
 
 .progress {
@@ -93,38 +102,30 @@
     max-width: 100px;
 }
 
-.deleteRowProgress {
-    display: flex;
-    height: 20px;
-    width: 20px;
-    border-radius: 50%;
-    background-color: var(--red);
-}
 
-.deleteRowProgress:hover {
-
-    cursor: pointer;
-}
 
 
 .section {
     border: 1px solid var(--grey);
+    background-color: var(--grey);
     border-radius: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
+    max-width: 400px;
     flex-wrap: wrap;
     align-content: center;
 }
 
-.upperPart {
+.sectionTopPart {
     width: 100%;
 }
 
+
 .sectionHeading {
     height: 50px;
-    border: 1px solid var(--grey);
     display: flex;
     margin: 0;
     width: 100%;
@@ -136,17 +137,15 @@
     align-content: center;
 }
 
-.progressContainer {
+.noCompleted {
+    color: var(--white);
     display: flex;
     width: 100%;
-    flex-direction: row;
-    gap: 10px;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    align-content: center;
-    background-color: var(--white);
+    justify-content: center;
+    text-align: center;
 }
+
+
 
 .results {
     width: 100%
@@ -159,14 +158,19 @@
 .progressRange {
     display: flex;
     flex-grow: 1;
+    height: 100%;
     flex-direction: row;
     justify-content: space-between;
+}
+
+.DeleteForm {
+    height: 100%;
 }
 
 .buttonModify {
     background-color: var(--yellow);
     border: none;
-    border-radius: 10px;
+    border-radius: 14px;
     padding: 5px 10px;
     font-size: 14px;
     cursor: pointer;
@@ -176,8 +180,17 @@
 
 .buttonDelete {
     background-color: var(--red);
-    border-radius: 10px 0 0 10px;
+    border: none;
+    border-radius: 14px;
+    padding: 5px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    height: 100%;
+    width: fit-content;
+    transition: all 0.3s ease;
 }
+
+
 
 .fa-trash-can,
 .fa-floppy-disk,
@@ -192,17 +205,18 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: nowrap;
-    align-content: center;
+    gap: 10px;
     background-color: var(--lightGrey);
     border: 1px solid var(--grey);
     border-radius: 0 0 18px 18px;
+    align-content: center;
+    flex-wrap: nowrap;
 }
 
 .valor {
-    margin-left: 10px;
-    padding: 5px;
-    border-radius: 5px;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 15px;
     border: none;
 }
 
@@ -252,7 +266,7 @@
 
 .formLargeList {
     display: flex;
-
+    margin-bottom: 50px;
     border: none;
     background-color: var(--white);
     border-radius: 0;
@@ -265,10 +279,12 @@
 }
 
 .formLarge input,
-.formLarge textarea {
+.formLarge textarea,
+.input {
     border: 1px solid #ccc;
-    border-radius: 10px;
+    border-radius: 14px;
     padding: 5px 10px;
+    height: 20px;
     font-size: 14px;
     width: 90%;
     color: var(--grey);
@@ -300,6 +316,7 @@
 .formMultipleLines {
     display: flex;
     gap: 5%;
+    width: 95%;
     flex-direction: row;
     justify-content: center;
     align-items: center;
@@ -321,7 +338,7 @@
     border: 1px solid var(--grey);
     background-color: var(--white);
     border-radius: 18px;
-    padding: 5px 10px;
+    padding: 2%;
 }
 
 .estudiAdded label {
@@ -330,13 +347,13 @@
 }
 
 .fieldNoEdit {
+
     max-width: 500px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
     align-content: flex-start;
-    width: 100%;
     padding: 5px 10px;
     border-radius: 10px;
 }
@@ -354,4 +371,59 @@
     background-color: var(--grey);
     width: 100%;
     max-width: 500px;
+}
+
+.principalField {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    background-color: var(--lightGrey);
+    border-radius: 10px;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    cursor: pointer;
+}
+
+.principalField:hover {
+    background-color: var(--midGrey);
+}
+
+.dropIconContainer {
+    display: grid;
+    place-items: center;
+    width: fit-content;
+    height: fit-content;
+    margin-right: 10px;
+}
+
+.dropIcon {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    transform: rotate(0deg);
+    transition: all 0.3s ease;
+
+}
+
+.contentField {
+    width: 100%;
+    padding-bottom: 10px;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(180deg);
+    }
+
+
+}
+
+.rotate {
+    transform: rotate(180deg);
 }

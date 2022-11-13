@@ -24,8 +24,9 @@ $user['dadesPersonals'] = selectTableByUser('usuaris', $id, $conn, 'id') ?? []; 
 $user['habilitats'] = selectTableByUser('habilitats', $id, $conn) ?? []; //done
 $user['informatica'] = selectTableByUser('informatica', $id, $conn) ?? []; //done
 $user['idiomes'] = selectTableByUser('idiomes', $id, $conn) ?? []; //done
-$user['experiencies'] = selectTableByUser('experiencies', $id, $conn) ?? [];
-$user['estudis'] = selectTableByUser('estudis', $id, $conn) ?? [];
+$user['experiencies'] = selectTableByUser('experiencies', $id, $conn) ?? []; //done
+$user['estudis'] = selectTableByUser('estudis', $id, $conn) ?? []; //done
+$user['competencies'] = selectTableByUser('competencies', $id, $conn) ?? []; //done
 
 
 $_SESSION['user'] = $user;

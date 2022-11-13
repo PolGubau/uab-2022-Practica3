@@ -141,6 +141,26 @@ function getCvIdiomes($conn, $cvId)
 
     return $result;
 }
+function getCvCompetencies($conn, $cvId)
+{
+    $stmt = $conn->prepare("SELECT * FROM cvCompetencies WHERE cvId = :cvId");
+    $stmt->execute(['cvId' => $cvId]);
+    $data = $stmt->fetchAll();
+
+    // we want to take originalData from $data 
+    $result = [];
+
+    foreach ($data as $row) {
+        $originalId = $row['originalData'] ?? null;
+        if ($originalId) {
+            $finded = getRowsByTableAndId($conn, 'competencies', 'id', $originalId);
+            array_push($result, $finded);
+        }
+    }
+
+
+    return $result;
+}
 
 
 
@@ -173,8 +193,9 @@ function completeCv($conn, $cvId)
     $experiencia = getCvExperiencies($conn, $cvId, $userId);
     $habilitats = getCvHabilitats($conn, $cvId, $userId);
     $idiomes = getCvIdiomes($conn, $cvId, $userId);
+    $competencies = getCvCompetencies($conn, $cvId, $userId);
 
-    $BigCV = new CV($cvId, $metadata, $arrayDadesPersonals, $experiencia, $estudis, $habilitats, $idiomes, $informatica);
+    $BigCV = new CV($cvId, $metadata, $arrayDadesPersonals, $experiencia, $estudis, $habilitats, $idiomes, $informatica, $competencies);
 
     return $BigCV;
 }

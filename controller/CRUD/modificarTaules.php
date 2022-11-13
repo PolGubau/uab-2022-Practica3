@@ -24,7 +24,70 @@ if (isset($_GET['modificantPersonsalAjax'])) {
     updateTable('usuaris', $_GET['inputId'], $_GET['value'], $id, $conn);
     exit;
 }
+if (isset($_POST['function'])) {
+    switch ($_POST['function']) {
+        case 'modificantCompetencies':
+            //  ($taula,  $camp, $valor, $id, $conn, $keyField = 'id')
+            //  "UPDATE $taula SET $camp = '$valor' WHERE $keyField = $id";
 
+
+            try {
+                updateTable('competencies', 'valor', $_POST['value'], $_POST['inputId'],  $conn);
+                echo 'ok';
+            } catch (\Throwable $th) {
+                echo 'error';
+            }
+            break;
+        case 'modificarestudi':
+            try {
+                echo "modificarEstudis";
+                $userId = $_POST['idUsuari'];
+                $taula = $_POST['taula'];
+                $idTaula = $_POST['idTaula'];
+                $Id = $_POST['estudiId'];
+                $DataFi = $_POST['estudiDataFi'];
+                $DataInici = $_POST['estudiDataInici'];
+                $Descripcio = $_POST['estudiDescripcio'];
+                $Empresa = $_POST['estudiEmpresa'];
+                $Titol = $_POST['estudiTitol'];
+                $Ubicacio = $_POST['estudiUbicacio'];
+                modificarEstudis($conn, $Id, $DataInici, $DataFi, $Titol, $Empresa, $Ubicacio, $Descripcio);
+
+                header('Location: ../../profile.php?edit');
+                echo 'ok';
+            } catch (\Throwable $th) {
+                echo 'error';
+            }
+            break;
+
+        case 'modificarExperiencia':
+            try {
+                $userId = $_POST['idUsuari'];
+                $taula = $_POST['taula'];
+                $idTaula = $_POST['idTaula'];
+                $Id = $_POST['experienciaId'];
+                $DataFi = $_POST['experienciaDataFi'];
+                $DataInici = $_POST['experienciaDataInici'];
+                $Descripcio = $_POST['experienciaDescripcio'];
+                $Empresa = $_POST['experienciaEmpresa'];
+                $Titol = $_POST['experienciaTitol'];
+                $Ubicacio = $_POST['experienciaUbicacio'];
+                modificarExperiencies($conn, $Id, $DataInici, $DataFi, $Titol, $Empresa, $Ubicacio, $Descripcio);
+
+                header('Location: ../../profile.php?edit');
+            } catch (\Throwable $th) {
+                echo 'error';
+                die;
+            }
+
+
+
+        default:
+            # code...
+            break;
+    }
+    die;
+}
 if (isset($_POST['modificaUnaDadaPersonal'])) {
     echo 'Modificant dades personals';
     $lastUser = $_SESSION['user']['dadesPersonals'][0];
@@ -152,36 +215,9 @@ if (isset($_POST['modificaInformatica'])) {
     header('Location: ../../profile.php?edit');
 }
 
-if (isset($_POST['modificarExperiencia'])) {
-    $userId = $_POST['idUsuari'];
-    $taula = $_POST['taula'];
-    $idTaula = $_POST['idTaula'];
-    $experienciaId = $_POST['experienciaId'];
-    $experienciaDataFi = $_POST['experienciaDataFi'];
-    $experienciaDataInici = $_POST['experienciaDataInici'];
-    $experienciaDescripcio = $_POST['experienciaDescripcio'];
-    $experienciaEmpresa = $_POST['experienciaEmpresa'];
-    $experienciaTitol = $_POST['experienciaTitol'];
-    $experienciaUbicacio = $_POST['experienciaUbicacio'];
-    modificarExperiencies($conn, $experienciaId, $experienciaDataInici, $experienciaDataFi, $experienciaTitol, $experienciaEmpresa, $experienciaUbicacio, $experienciaDescripcio);
 
-    header('Location: ../../profile.php?edit');
-    exit();
-}
 if (isset($_POST['modificarEstudis'])) {
-    $userId = $_POST['idUsuari'];
-    $taula = $_POST['taula'];
-    $idTaula = $_POST['idTaula'];
-    $Id = $_POST['estudiId'];
-    $DataFi = $_POST['estudiDataFi'];
-    $DataInici = $_POST['estudiDataInici'];
-    $Descripcio = $_POST['estudiDescripcio'];
-    $Empresa = $_POST['estudiEmpresa'];
-    $Titol = $_POST['estudiTitol'];
-    $Ubicacio = $_POST['estudiUbicacio'];
-    modificarEstudis($conn, $Id, $DataInici, $DataFi, $Titol, $Empresa, $Ubicacio, $Descripcio);
 
-    header('Location: ../../profile.php?edit');
     exit();
 }
 

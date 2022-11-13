@@ -15,6 +15,7 @@ $informatica = $_REQUEST['informaticaChecks'] ?? [];
 $idiomes = $_REQUEST['idiomesChecks'] ?? [];
 $experiencies = $_REQUEST['experienciesChecks'] ?? [];
 $estudis = $_REQUEST['estudisChecks'] ?? [];
+$competencies = $_REQUEST['competenciesChecks'] ?? [];
 
 
 
@@ -91,6 +92,14 @@ foreach ($estudis as $originalData) {
         newCvHabilitat('cvEstudis', $conn, $cvId, $originalData);
     } catch (\Throwable $th) {
         echo "Error inserting habilitat $originalData in cvEstudis table <br>";
+    }
+}
+foreach ($competencies as $originalData) {
+    try {
+        echo "Inserting competencies $originalData in cvEstudis table <br>";
+        newCvHabilitat('cvCompetencies', $conn, $cvId, $originalData);
+    } catch (\Throwable $th) {
+        echo "Error inserting competencies $originalData in cvEstudis table <br>";
     }
 }
 

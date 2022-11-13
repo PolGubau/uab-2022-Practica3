@@ -15,6 +15,18 @@ if (isset($_POST['function'])) {
 
 
 
+        case 'afegirCompetencies':
+            $userId = $_POST['idUsuari'];
+            $valor = $_POST['valor'];
+            $query = addCompetencia($conn, $userId, $valor);
+            if ($query == true) {
+                require_once './recorrerTaules.php';
+                $_SESSION['user'] = $user;
+                header('Location: ../../profile.php?edit');
+            } else {
+                header('Location: ../../profile.php?edit');
+            }
+            break;
         case 'afegirIdiomes':
             $userId = $_POST['userId'];
             $valor = $_POST['valor'];

@@ -23,7 +23,8 @@ $arrayCvs = getAllCvs($conn, $_SESSION['user']['id']);
     <link rel="stylesheet" href="styles/errors.css">
     <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon" />
     <script src="https://kit.fontawesome.com/6a721e3c22.js" crossorigin="anonymous"></script>
-
+    <!-- import jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Inici · CvCreator</title>
 
     <script>
@@ -32,6 +33,17 @@ $arrayCvs = getAllCvs($conn, $_SESSION['user']['id']);
                 window.location.href = "controller/gestionarCv.php?accio=D&cvId=" + id;
             }
         }
+
+        // .description must have max 200 characters, after that it will be shown [...], no more
+        $(document).ready(function() {
+            const maxCharacters = 50;
+            $('.description').each(function() {
+                var text = $(this).text();
+                if (text.length > maxCharacters) {
+                    $(this).text(text.substring(0, maxCharacters) + '...');
+                }
+            });
+        });
     </script>
 
 </head>
@@ -72,7 +84,7 @@ $arrayCvs = getAllCvs($conn, $_SESSION['user']['id']);
                     <article class="cvContainer">
                         <a class="cvBox" href="./cv.php?id=<?php echo $cv['cvId'] ?>">
                             <h3><?php echo $cv['cvNom'] ?></h3>
-                            <p><?php echo $cv['cvPerfil'] ?></p>
+                            <p class="description"><?php echo $cv['cvPerfil'] ?></p>
 
                         </a>
 
@@ -88,8 +100,6 @@ $arrayCvs = getAllCvs($conn, $_SESSION['user']['id']);
             <?php
             }
             ?>
-
-
         </section>
     </section>
 

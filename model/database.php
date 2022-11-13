@@ -59,6 +59,12 @@ function addLanguage($conn, $userId, $idiomaNom, $idiomaNivell)
     $result = $conn->query($query);
     return $result;
 }
+function addCompetencia($conn, $userId, $valor)
+{
+    $query = "INSERT INTO competencies (valor,userId) VALUES ('$valor',$userId ) RETURNING *";
+    $result = $conn->query($query);
+    return $result;
+}
 function addInformatica($conn, $userId, $valor, $nivell)
 {
     $query = "INSERT INTO informatica (userId, informaticaNom, informaticaNivell) VALUES ($userId, '$valor', '$nivell')";

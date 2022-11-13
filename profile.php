@@ -170,6 +170,7 @@ if ($editMode) {
         <?php
 
 
+        include_once './views/Profile/seccionesClaveValor/seccioCompetencies.php';
         include_once './views/Profile/seccionesClaveValor/seccioHabilitats.php';
         include_once './views/Profile/seccionesClaveValor/SeccióIdiomes.php';
         include_once './views/Profile/seccionesClaveValor/seccioInformatica.php';

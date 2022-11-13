@@ -71,12 +71,12 @@
         <input type="password" class="input" name="password" maxlength="8">
       </div>
 
-      <input type="submit" class="botoEnviar" value="Registra't">
+      <input type="submit" class="botoEnviar botoEnviarBig" value="Registra't">
 
 
     </form>
 
-    <a href="./login.php" class="botoRegistre">Tens un compte? Inicia sessió</a>
+    <a href="./login.php" class="botoRegistre ">Tens un compte? Inicia sessió</a>
   </section>
 
 </html>

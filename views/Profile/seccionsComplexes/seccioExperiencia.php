@@ -6,7 +6,7 @@ $array = $user['experiencies'];
 ?>
 
 <section class="section">
-    <div class="upperPart">
+    <div class="sectionTopPart">
         <p class="sectionHeading">Les teves experiències laborals</p>
 
         <?php
@@ -15,6 +15,9 @@ $array = $user['experiencies'];
         } else {
             if ($editMode) {
                 foreach ($array as $element) {
+                    // echo '<pre>';
+                    // print_r($element);
+                    // echo '</pre>';
         ?>
                     <div class="progressContainer">
                         <form class="formLarge formLargeList" method="POST" action="./controller/CRUD/modificarTaules.php" autocomplete="off">
@@ -40,16 +43,16 @@ $array = $user['experiencies'];
                                 </div>
 
                             </div>
-                            <button type="submit" value="Modifica" name="modificarExperiencia" class="buttonModify">
+                            <button type="submit" value="Modifica" name="modificarExperiencia" class="buttonModify modifyComplex">
                                 Guardar <i class="fa-solid fa-floppy-disk"></i>
                             </button>
                         </form>
-                        <form method="POST" action="./controller/CRUD/eliminarDeTaula.php" class="deleteButtonFloating">
+                        <form method="POST" action="./controller/CRUD/eliminarDeTaula.php" class="deleteComplex ">
                             <input type="hidden" name="id" value=<?php echo $element['experienciaId'] ?> />
                             <input type="hidden" name="taula" value="experiencies" />
                             <input type="hidden" name="idTaula" value='experienciaId' />
 
-                            <button type="submit" class="buttonModify buttonDelete" name="eliminaExperiencia">
+                            <button type="submit" class=" buttonDelete " name="eliminaExperiencia">
                                 Borrar <i class="fa-solid fa-trash-can"></i>
 
                             </button>
@@ -60,39 +63,47 @@ $array = $user['experiencies'];
                 }
             }
             if (!$editMode) {
+                echo "<div class='allElements'>";
                 foreach ($array as $element) {
                 ?>
                     <div class="estudiAdded">
-
-                        <div class="fieldNoEdit">
-                            <label>Titol a l'empresa</label>
-                            <p><?php echo $element['experienciaTitol'] ?></p>
-                        </div>
-                        <div class="fieldNoEdit">
-                            <label>Nom de l'empresa</label>
-                            <p><?php echo $element['experienciaEmpresa'] ?></p>
-                        </div>
-                        <div class="fieldNoEdit">
-                            <label>Lloc de l'empresa</label>
-                            <p><?php echo $element['experienciaUbicacio'] ?></p>
-                        </div>
-                        <div class="fieldNoEdit">
-                            <label>Descripció de l'experiència</label>
-                            <p><?php echo $element['experienciaDescripcio'] ?></p>
-                        </div>
-                        <div class="formMultipleLines">
+                        <div class="principalField">
                             <div class="fieldNoEdit">
-                                <label>Data Inici</label>
-                                <p><?php echo $element['experienciaDataInici'] ?></p>
+                                <label for="estudiTitol">Nom del titol a l'empresa</label>
+                                <p><?php echo $element['experienciaTitol'] ?></p>
+                            </div>
+                            <div class="dropIconContainer">
+                                <i class="fa-solid fa-chevron-down dropIcon"></i>
+                            </div>
+                        </div>
+                        <div class="contentField">
+                            <div class="fieldNoEdit">
+                                <label for="experienciaTitol">Nom de l'Empresa</label>
+                                <p><?php echo $element['experienciaEmpresa'] ?></p>
                             </div>
                             <div class="fieldNoEdit">
-                                <label>Data Final</label>
-                                <p><?php echo $element['experienciaDataFi'] ?></p>
+                                <label for="experienciaTitol">Lloc de l'Empresa</label>
+                                <p><?php echo $element['experienciaUbicacio'] ?></p>
+                            </div>
+                            <div class="fieldNoEdit">
+                                <label for="experienciaTitol">Descripció de l'experiència</label>
+                                <p><?php echo $element['experienciaDescripcio'] ?></p>
+                            </div>
+                            <div class="formMultipleLines">
+                                <div class="fieldNoEdit">
+                                    <label for="experienciaTitol">Data Inici</label>
+                                    <p><?php echo $element['experienciaDataInici'] ?></p>
+                                </div>
+                                <div class="fieldNoEdit">
+                                    <label for="experienciaTitol">Data Final</label>
+                                    <p><?php echo $element['experienciaDataFi'] ?></p>
+                                </div>
                             </div>
                         </div>
                     </div>
         <?php
                 }
+                echo "</div>";
             }
         }
 

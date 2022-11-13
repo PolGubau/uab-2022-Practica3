@@ -11,9 +11,10 @@ class CV
     public $habilitats;
     public $idiomes;
     public $informatica;
+    public $competencies;
 
 
-    public function __construct($id, $metadata, $dadesPersonals, $experiencia, $estudis, $habilitats, $idiomes, $informatica)
+    public function __construct($id, $metadata, $dadesPersonals, $experiencia, $estudis, $habilitats, $idiomes, $informatica, $competencies)
     {
         $this->id = $id;
         $this->metadata = $metadata;
@@ -23,6 +24,7 @@ class CV
         $this->habilitats = $habilitats;
         $this->idiomes = $idiomes;
         $this->informatica = $informatica;
+        $this->competencies = $competencies;
     }
     public function getId()
     {

@@ -33,7 +33,7 @@ $array = $user['habilitats'];
 ?>
 
 <section class="section">
-    <div class="upperPart">
+    <div class="sectionTopPart">
 
         <p class="sectionHeading">Les teves habilitats</p>
 
@@ -106,6 +106,6 @@ $array = $user['habilitats'];
 
         <input type="text" name="valor" id="valor" class="valor" placeholder="Nova habilitat: " required>
         <input type="range" class="input" name="nivell" min="0" max="100" value="50" />
-        <button class="botoEnviar" type="submit" name="new"><i class="fa-solid fa-plus"></i></button>
+        <button class="botoEnviar botoEnviarEsquina" type="submit" name="new"><i class="fa-solid fa-plus"></i></button>
     </form>
 </section>

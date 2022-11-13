@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="styles/buttons.css">
     <link rel="stylesheet" href="styles/form.css">
     <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon" />
-<title>Inici de sessió</title>
+    <title>Inici de sessió</title>
 </head>
 
 <body>
@@ -52,7 +52,7 @@
             </div>
 
 
-            <input type="submit" class="botoEnviar" value="Envia">
+            <input type="submit" class="botoEnviar botoEnviarBig" value="Envia">
 
 
         </form>
